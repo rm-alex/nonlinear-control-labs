@@ -1,0 +1,454 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage{tempora}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bfseries\centering\MakeUppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]{\bfseries}{\thesubsubsection.}{1em}{}
+
+\renewcommand{\contentsname}{\hfill \textbf{СОДЕРЖАНИЕ} \hfill\null}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{cmap}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.7}
+
+\lstdefinestyle{code}{
+    language=Python, % change if needed
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\small\color{LightGray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    rulecolor=\color{LightGray},
+    linewidth=\linewidth,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{violet},
+    escapeinside={\%*}{*)},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt
+}
+\lstset{style=code}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={GOST report template},
+    pdfauthor={Rumyantsev Alexey},
+    pdfsubject={report subject},
+    pdfkeywords={LaTeX, PDF},
+    pdfpagemode=FullScreen,
+}
+
+\graphicspath{{src/images/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+        \vspace*{2.5mm}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО»\\
+        \vspace*{2.5mm}
+        \textbf{ФАКУЛЬТЕТ СИСТЕМ УПРАВЛЕНИЯ И РОБОТОТЕХНИКИ}
+        \vfill
+
+        {\large ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №1}\\
+        {\large по дисциплине}\\
+        {\large\bfseries «НЕЛИНЕЙНЫЕ СИСТЕМЫ УПРАВЛЕНИЯ»}\\
+        {\large на тему}\\
+        {\large\bfseries «АНАЛИЗ И СТАБИЛИЗАЦИЯ НЕЛИНЕЙНЫХ ДИНАМИЧЕСКИХ СИСТЕМ»}\\
+        \vfill
+
+        \begin{flushright}
+            Выполнил: студент гр. R3441\\
+            Румянцев А. А.\medskip\\
+
+            Проверил: преподаватель\\
+            Зименко К. А.
+        \end{flushright}
+
+        \vfill
+
+        Санкт-Петербург\\
+        2025
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Задание 1}
+\subsection{Условие}
+Для каждой из данных систем найти все точки равновесия.
+На основе метода линеаризации в точке определить тип каждого
+изолированного состояния равновесия. С использованием перехода
+к полярным координатам определить устойчивость предельного
+цикла для системы 4.
+
+
+Численно построить фазовый портрет каждой системы и сравнить с полученными
+результатами (кроме системы 7).
+
+
+\subsection{Выполнение}
+\subsubsection{Первая система}
+Найдем точки равновесия системы (\ref{syseq:1})
+\begin{align}
+\begin{cases}
+    \dot{x}_1=-x_1+2x_1^3+x_2,\\
+    \dot{x}_2=-x_1-x_2
+\end{cases}\label{syseq:1}
+\end{align}
+
+
+Приравняем выражения к нулю
+и найдем корни системы
+$$
+\begin{cases}
+    -x_1+2x_1^3+x_2=0,\\
+    -x_1-x_2=0
+\end{cases}\Rightarrow
+\begin{cases}
+    x_1=-x_2,\\
+    x_2\left( 1-x_2^2 \right)=0
+\end{cases}\Rightarrow
+\left[
+\begin{matrix}
+    \left( 0;0 \right),\\
+    \left( 1;-1 \right),\\
+    \left( -1;1 \right)
+\end{matrix}
+\right.
+$$
+
+
+Определим тип каждого изолированного состояния равновесия.
+
+
+Составим матрицу Якоби
+$$
+J=\dfrac{\partial f}{\partial x}=\begin{bmatrix}
+    \dfrac{\partial \dot{x}_1}{\partial x_1} &\dfrac{\partial \dot{x}_1}{\partial x_2}\\
+    \dfrac{\partial \dot{x}_2}{\partial x_1} &\dfrac{\partial \dot{x}_2}{\partial x_2}\\
+\end{bmatrix}=
+\begin{bmatrix}
+    6x_1^2-1 &1\\
+    -1 &-1
+\end{bmatrix}
+$$
+
+
+Найдем матрицы $A_i$ и их собственные числа
+$$
+A_1=J|_{\left( 0;0 \right)}=\begin{bmatrix}
+    -1 &1\\
+    -1 &-1
+\end{bmatrix},\ \lambda_{A_1\, 1,2}=\left\{ -1\pm i \right\},
+$$
+$$
+A_2=J|_{\left( 1;-1 \right)}=\begin{bmatrix}
+    5 &1\\
+    -1 &-1
+\end{bmatrix},\ \lambda_{A_2\, 1,2}=\left\{4.8284, -0.8284\right\},
+$$
+$$
+A_3=J|_{\left( -1;1 \right)}=\begin{bmatrix}
+    5 &1\\
+    -1 &-1
+\end{bmatrix},\ \lambda_{A_3\, 1,2}=\lambda_{A_2\, 1,2}
+$$
+
+
+Таким образом, 
+\begin{align*}
+    &(0;0):\lambda_{A_1\, 1,2}=\left\{ -1\pm i \right\} \text{ -- устойчивый фокус},\\
+    &(1;-1),(-1;1):\lambda_{A_{2,3}\, 1,2}=\left\{4.8284, -0.8284\right\} \text{ -- седло}
+\end{align*}
+
+
+Седловые точки находятся рядом с устойчивым фокусом,
+из-за чего некоторые фазовые траектории будут уходить на бесконечность
+вдоль седловых направлений.
+
+
+Таким образом, любой контур вокруг фокуса не может
+полностью замкнуться, а значит предельного цикла не существует.
+
+
+Численно построим фазовый портрет системы.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{pps1.png}
+    \caption{Фазовый портрет системы (\ref{syseq:1})}
+    \label{fig:pps1}
+\end{figure}
+
+
+Точки равновесия совпадают с найденными ранее.
+На графике получились устойчивый фокус и два седла.
+
+
+\subsubsection{Вторая система}
+Рассмотрим систему (\ref{syseq:2})
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=x_1+x_1x_2,\\
+        \dot{x}_2=-x_2+x_2^2+x_1x_2-x_1^3
+    \end{cases}\label{syseq:2}
+\end{align}
+
+
+Проведем аналогичные действия
+$$\begin{cases}
+    x_1+x_1x_2=0,\\
+    -x_2+x_2^2+x_1x_2-x_1^3=0
+\end{cases}\Rightarrow\begin{cases}
+    x_1\left( x_2+1 \right)=0,\\
+    -x_2-x_2^2+x_1x_2-x_1^3=0
+\end{cases}$$
+
+
+Получим две системы
+$$
+\begin{cases}
+    x_1=0,\\
+    x_2\left( x_2-1 \right)=0
+\end{cases}\vee \ \ \ \begin{cases}
+    x_2=-1,\\
+    x_1^3+x_1-2=0
+\end{cases}
+$$
+
+
+Решая первую систему, получим
+$$
+\begin{cases}
+    x_1=0,\\
+    x_2=0
+\end{cases}\vee \ \ \ \begin{cases}
+    x_1=0,\\
+    x_2=1
+\end{cases}
+$$
+
+
+Подставив $x_1=1$ во вторую систему, получим равенство нулю.
+После деления полинома $x_1^3+x_1-2$ на $x_1-1$ получим
+$$
+\begin{cases}
+    x_2=-1,\\
+    \left( x_1-1 \right)\left( x_1^2+x_1+2 \right)=0
+\end{cases}
+$$
+
+
+Второе выражение даст комплексные корни. Для анализа
+системы и построения фазовых портретов берем только вещественные, тогда
+$$
+\begin{cases}
+    x_1=1,\\
+    x_2=-1
+\end{cases}
+$$
+
+
+Таким образом, имеем точки равновесия системы
+$$
+\left[
+\begin{matrix}
+    \left( 0;0 \right),\\
+    \left( 0;1 \right),\\
+    \left( 1;-1 \right)
+\end{matrix}
+\right.
+$$
+
+
+Составим матрицу Якоби
+$$
+J=\dfrac{\partial f}{\partial x}=\begin{bmatrix}
+    x_2+1 &x_1\\
+    -3x_1^2+x_2 &x_1+2x_2-1
+\end{bmatrix}
+$$
+
+
+Найдем матрицы $A_i$ и их собственные числа
+$$
+A_1=J|_{\left( 0;0\right)}=\begin{bmatrix}
+    1 &0\\
+    0 &-1
+\end{bmatrix},\ \lambda_{A_1\,1,2}=\left\{ -1,1 \right\},
+$$
+$$
+A_2=J|_{\left( 0;1\right)}=\begin{bmatrix}
+    2 &0\\
+    1 &1
+\end{bmatrix},\ \lambda_{A_2\,1,2}=\left\{ 1,2 \right\},
+$$
+$$
+A_3=J|_{\left( 1;-1\right)}=\begin{bmatrix}
+    0     &1\\
+    -4    &-2
+\end{bmatrix},\ \lambda_{A_3\,1,2}=\left\{ -1 \pm 1.7321i \right\}
+$$
+
+
+Таким образом,
+\begin{align*}
+    &\left( 0;0 \right):\lambda_{A_1\,1,2}=\left\{ -1,1 \right\}\text{ -- седло},\\
+    &\left( 0;1 \right):\lambda_{A_2\,1,2}=\left\{ 1,2 \right\}\text{ -- неустойчивый узел},\\
+    &\left( 1;-1 \right):\lambda_{A_3\,1,2}=\left\{ -1 \pm 1.7321i \right\}\text{-- устойчивый фокус}
+\end{align*}
+
+
+Численно построим фазовый портрет системы.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{pps2.png}
+    \caption{Фазовый портрет системы (\ref{syseq:2})}
+    \label{fig:pps2}
+\end{figure}
+
+
+Точки равновесия совпадают с найденными ранее.
+На графике получились седло, неустойчивый узел и устойчивый фокус.
+
+
+\subsubsection{Третья система}
+...
+
+
+\subsubsection{Четвертая система}
+...
+
+
+\subsubsection{Пятая система}
+...
+
+
+\subsubsection{Шестая система}
+...
+
+
+\subsubsection{Седьмая система}
+...
+
+
+\section{Задание 2}
+\subsection{Условие}
+Для каждой из данных систем найти все изолированные
+точки равновесия и построить локально стабилизирующий
+регулятор.
+
+
+Представить результаты численного моделирования.
+
+
+\subsection{Выполнение}
+\subsubsection{Первая система}
+...
+
+
+\subsubsection{Вторая система}
+...
+
+
+\section{Вывод}
+...
+
+% Перейдем к полярным координатам
+% $$
+% r=\sqrt{x_1^2+x_2^2},\ \ \theta=\arctan{\dfrac{x_2}{x_1}},\ \
+% \begin{cases}
+%     x_1=r\cos{\theta},\\
+%     x_2=r\sin{\theta}
+% \end{cases}
+% $$
+
+% \subsection{Подраздел}
+% Пример математической формулы:
+% \[
+%     \int_0^\infty \frac{\sin x}{x} dx
+% \]
+
+% \subsubsection{Подподраздел}
+% На рис. \ref{fig:fig_names} три изображения.
+
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}{0.3\textwidth}
+%         \includegraphics[width=\linewidth]{cat2.jpg}
+%         \caption{Картинка 1}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}{0.3\textwidth}
+%         \includegraphics[width=\linewidth]{cat2.jpg}
+%         \caption{Картинка 2}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}{0.3\textwidth}
+%         \includegraphics[width=\linewidth]{cat2.jpg}
+%         \caption{Картинка 3}
+%     \end{subfigure}
+%     \caption{Сравнение изображений}
+%     \label{fig:fig_names}
+% \end{figure}
+
+% \appendix
+% \renewcommand{\thesection}{\Asbuk{section}}
+
+% \section{Приложение}
+% Листинг \ref{lst:cat} выводит породы кошек:
+
+% \begin{lstlisting}[label=lst:cat, caption={Пример кода}]
+% cats = ['Siamese cat', 'Maine Coon', 'Persian cat',
+%         'Sphinx', 'Abyssinian cat', 'Scottish fold cat']
+
+% for cat in cats:
+%     print(f'Hello, this is {cat}')
+% \end{lstlisting}
+
+\end{document}
