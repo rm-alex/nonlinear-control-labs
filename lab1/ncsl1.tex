@@ -358,11 +358,65 @@ $$
 
 
 \subsubsection{Третья система}
-...
+Рассмотрим систему:
+\begin{align}
+\begin{cases}
+    \dot{x}_1=x_2,\\
+    \dot{x}_2=-x_1+x_2\left( 1-x_1^2 +0.1x_1^4\right)
+\end{cases}   \label{syseq:3} 
+\end{align}
+
+
+Проведем аналогичные действия
+$$
+\begin{cases}
+    x_2=0,\\
+    -x_1=0
+\end{cases}\Rightarrow\left[
+\begin{matrix}
+    \left( 0;0 \right)
+\end{matrix}
+\right.
+$$
+
+
+Матрица Якоби:
+$$
+J=\begin{bmatrix}
+    0 &1\\
+    -1+x_2\left( -2x_1+0.4x_1^3 \right) &1-x_1^2+0.1x_1^4
+\end{bmatrix}
+$$
+
+
+Матрица $A$ и ее собственные числа:
+$$
+A=J|_{\left( 0;0 \right)}=\begin{bmatrix}
+    0&1\\
+    -1&1
+\end{bmatrix},\ \lambda_{1,2}=\left\{ 0.5 \pm 0.866i \right\}
+$$
+
+
+Вывод: неустойчивый фокус. Действительная часть мнимной пары
+больше нуля.
+
+
+Фазовый портрет:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{pps3.png}
+    \caption{Фазовый портрет системы (\ref{syseq:3})}
+    \label{fig:pps3}
+\end{figure}
+
+
+Точка равновесия совпадает с найденной ранее. На портрете неустойчивый фокус.
 
 
 \subsubsection{Четвертая система}
-...
+Рассмотрим систему:
+
 
 
 \subsubsection{Пятая система}
