@@ -372,11 +372,10 @@ $$
 \begin{cases}
     x_2=0,\\
     -x_1=0
-\end{cases}\Rightarrow\left[
+\end{cases}\Rightarrow
 \begin{matrix}
     \left( 0;0 \right)
 \end{matrix}
-\right.
 $$
 
 
@@ -424,6 +423,89 @@ $$
 \end{align}
 
 
+Сделаем замену $r^2=x_1^2+x_2^2$, тогда:
+$$
+\begin{cases}
+    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
+        \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right)
+\end{cases}
+$$
+
+
+Найдем точки равновесия:
+$$
+\begin{cases}
+    \left( x_1-x_2 \right)\left( 1-r^2 \right)=0,\\
+    \left( x_1+x_2 \right)\left( 1-r^2 \right)=0
+\end{cases}
+$$
+
+
+Рассмотрим случай $1-r^2\neq0$:
+$$
+\begin{cases}
+    1-r^2\neq0,\\
+    x_1-x_2=0,\\
+    x_1+x_2=0
+\end{cases}\Rightarrow\begin{cases}
+    x_1=x_2,\\
+    x_2=-x_2
+\end{cases}\Rightarrow
+\begin{matrix}
+    \left( 0;0 \right)
+\end{matrix}
+$$
+
+
+Рассмотрим случай $1-r^2=0$:
+$$
+\begin{cases}
+    1-r^2=0,\\
+    x_1-x_2\neq0,\\
+    x_1+x_2\neq0
+\end{cases}\Rightarrow\begin{cases}
+    r=1\ \left( \sum x_i^2\neq-1 \right),\\
+    x_1^2+x_2^2=1
+\end{cases}\Rightarrow\left\{ \left( x_1,x_2 \right)|\, x_1^2+x_2^2=1 \right\}
+$$
+
+
+В случае $1-r^2=0$ единичная окружность является множеством равновесий.
+
+
+Матрица Якоби:
+$$
+J=\begin{bmatrix}
+    -2x_1^2-\left( x_1-x_2 \right)^2+1&2x_2^2+\left( x_1-x_2 \right)^2-1\\
+    -2x_1^2-\left( x_1+x_2 \right)^2+1&-2x_2^2-\left( x_1+x_2 \right)^2+1
+\end{bmatrix}
+$$
+
+
+Матрица $A$ и ее собственные числа:
+$$
+A=J|_{\left(0;0\right)}=\begin{bmatrix}
+    1&-1\\
+    1&1
+\end{bmatrix},\ \lambda_{1,2}=\left\{ 1\pm i \right\}
+$$
+
+
+Таким образом, в точке равновесия $\left( 0;0 \right)$
+неустойчивый фокус. Действительная часть комплексной пары
+больше нуля.
+
+
+Для поиска предельного цикла перейдем к полярным координатам:
+$$
+r=\sqrt{x_1^2+x_2^2},\ \ \theta=\arctan{\dfrac{x_2}{x_1}},\ \
+\begin{cases}
+    x_1=r\cos{\theta},\\
+    x_2=r\sin{\theta}
+\end{cases}
+$$
+
+
 Фазовый портрет:
 \begin{figure}[H]
     \centering
@@ -434,6 +516,7 @@ $$
 
 
 Точка равновесия совпадает с найденной ранее.
+На портрете есть предельный цикл -- окружность радиуса 1.
 
 
 \subsubsection{Пятая система}
@@ -513,56 +596,9 @@ $$
 \section{Вывод}
 ...
 
-% Перейдем к полярным координатам
-% $$
-% r=\sqrt{x_1^2+x_2^2},\ \ \theta=\arctan{\dfrac{x_2}{x_1}},\ \
-% \begin{cases}
-%     x_1=r\cos{\theta},\\
-%     x_2=r\sin{\theta}
-% \end{cases}
-% $$
-
-% \subsection{Подраздел}
-% Пример математической формулы:
-% \[
-%     \int_0^\infty \frac{\sin x}{x} dx
-% \]
-
-% \subsubsection{Подподраздел}
-% На рис. \ref{fig:fig_names} три изображения.
-
-% \begin{figure}[H]
-%     \centering
-%     \begin{subfigure}{0.3\textwidth}
-%         \includegraphics[width=\linewidth]{cat2.jpg}
-%         \caption{Картинка 1}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}{0.3\textwidth}
-%         \includegraphics[width=\linewidth]{cat2.jpg}
-%         \caption{Картинка 2}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}{0.3\textwidth}
-%         \includegraphics[width=\linewidth]{cat2.jpg}
-%         \caption{Картинка 3}
-%     \end{subfigure}
-%     \caption{Сравнение изображений}
-%     \label{fig:fig_names}
-% \end{figure}
-
 % \appendix
 % \renewcommand{\thesection}{\Asbuk{section}}
 
 % \section{Приложение}
-% Листинг \ref{lst:cat} выводит породы кошек:
-
-% \begin{lstlisting}[label=lst:cat, caption={Пример кода}]
-% cats = ['Siamese cat', 'Maine Coon', 'Persian cat',
-%         'Sphinx', 'Abyssinian cat', 'Scottish fold cat']
-
-% for cat in cats:
-%     print(f'Hello, this is {cat}')
-% \end{lstlisting}
 
 \end{document}
