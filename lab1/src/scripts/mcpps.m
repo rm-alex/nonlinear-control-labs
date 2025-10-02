@@ -1,22 +1,24 @@
 %% Точки равновесия, якобиан, собственные числа
-syms x1 x2
+syms x1 x2 x3
 
 % change sys (1)
 dx1 = -x1^3+x2^3;
-dx2 = x2^3*x1-x2^3;
+dx2 = x1+3*x3-x2^3;
+dx3 = x1*x3 - x2^3 - sin(x1);
 
-eqns = [dx1 == 0, dx2 == 0];
-S = solve(eqns, [x1, x2], 'Real', true);
+eqns = [dx1 == 0, dx2 == 0, dx3 == 0];
+S = solve(eqns, [x1, x2, x3], 'Real', true);
 
 x1_eq = double(S.x1);
 x2_eq = double(S.x2);
+x3_eq = double(S.x3);
 
-J = jacobian([dx1; dx2], [x1, x2]);
+J = jacobian([dx1; dx2; dx3], [x1, x2, x3]);
 
 for k = 1:length(x1_eq)
-    Jk = double(subs(J, [x1, x2], [x1_eq(k), x2_eq(k)]));
+    Jk = double(subs(J, [x1, x2, x3], [x1_eq(k), x2_eq(k), x3_eq(k)]));
     lambdak = eig(Jk);
-    fprintf('Точка равновесия (%.3f, %.3f):\n', x1_eq(k), x2_eq(k));
+    fprintf('Точка равновесия (%.3f, %.3f, %.3f):\n', x1_eq(k), x2_eq(k), x3_eq(k));
     disp(Jk)
     disp(lambdak)
 end
@@ -74,7 +76,8 @@ title('Фазовый портрет системы');
 f = @(t,X) [(X(1)-X(2))*(1 - X(1)^2 - X(2)^2);
             (X(1)+X(2))*(1 - X(1)^2 - X(2)^2)];
 
-inits = [0 0.15; 0 -0.15; 2 0; -2 0; 0 2; 0 -2; -2 2; 2 -2; 1.5 2.5; -1.5 -2.5];
+inits = [0 0.15; 0 -0.15; 2 0; -2 0; 0 2; 0 -2; -2 2; 2 -2; 1.5 2.5;
+         0.15 0.15; -0.15 -0.15; -1.5 -2.5; 0.4 0.1; -0.4 -0.1];
 tspan = [0 50];
 
 for i = 1:size(inits,1)
@@ -87,7 +90,7 @@ h3 = plot(0, 0, 'ko', 'MarkerFaceColor','g', 'MarkerSize',6);
 
 % sys 4 cycle
 theta = linspace(0,2*pi,200);
-h4 = plot(cos(theta), sin(theta), 'k', 'LineWidth',0.5);
+h4 = plot(cos(theta), sin(theta), 'k', 'LineWidth',0.5, 'LineStyle','--');
 
 legend([h1, h2, h3, h4], ...
        {'Поле направлений','Траектории','Точки равновесия', 'Предельный цикл'}, ...

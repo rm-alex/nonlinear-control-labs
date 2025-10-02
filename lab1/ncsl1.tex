@@ -187,7 +187,7 @@ $$
 A_2=J|_{\left( 1;-1 \right)}=\begin{bmatrix}
     5 &1\\
     -1 &-1
-\end{bmatrix},\ \lambda_{A_2\, 1,2}=\left\{4.8284, -0.8284\right\},
+\end{bmatrix},\ \lambda_{A_2\, 1,2}=\left\{4.83, -0.83\right\},
 $$
 $$
 A_3=J|_{\left( -1;1 \right)}=\begin{bmatrix}
@@ -200,7 +200,7 @@ $$
 Таким образом, 
 \begin{align*}
     &(0;0):\lambda_{A_1\, 1,2}=\left\{ -1\pm i \right\} \text{ -- устойчивый фокус},\\
-    &(1;-1),(-1;1):\lambda_{A_{2,3}\, 1,2}=\left\{4.8284, -0.8284\right\} \text{ -- седло (неуст.)}
+    &(1;-1),(-1;1):\lambda_{A_{2,3}\, 1,2}=\left\{4.83, -0.83\right\} \text{ -- седло (неуст.)}
 \end{align*}
 
 
@@ -330,7 +330,7 @@ $$
 A_3=J|_{\left( 1;-1\right)}=\begin{bmatrix}
     0     &1\\
     -4    &-2
-\end{bmatrix},\ \lambda_{A_3\,1,2}=\left\{ -1 \pm 1.7321i \right\}
+\end{bmatrix},\ \lambda_{A_3\,1,2}=\left\{ -1 \pm 1.73i \right\}
 $$
 
 
@@ -338,7 +338,7 @@ $$
 \begin{align*}
     &\left( 0;0 \right):\lambda_{A_1\,1,2}=\left\{ -1,1 \right\}\text{ -- седло},\\
     &\left( 0;1 \right):\lambda_{A_2\,1,2}=\left\{ 1,2 \right\}\text{ -- неустойчивый узел},\\
-    &\left( 1;-1 \right):\lambda_{A_3\,1,2}=\left\{ -1 \pm 1.7321i \right\}\text{-- устойчивый фокус}
+    &\left( 1;-1 \right):\lambda_{A_3\,1,2}=\left\{ -1 \pm 1.73i \right\}\text{-- устойчивый фокус}
 \end{align*}
 
 
@@ -393,7 +393,7 @@ $$
 A=J|_{\left( 0;0 \right)}=\begin{bmatrix}
     0&1\\
     -1&1
-\end{bmatrix},\ \lambda_{1,2}=\left\{ 0.5 \pm 0.866i \right\}
+\end{bmatrix},\ \lambda_{1,2}=\left\{ 0.5 \pm 0.87i \right\}
 $$
 
 
@@ -788,14 +788,14 @@ $$
 A_2=J|_{\left( 1;1\right)}=\begin{bmatrix}
     -3 &3\\
     1 &0
-\end{bmatrix},\ \lambda_{A_2\,1,2}=\left\{ -3.7913,0.7913 \right\}
+\end{bmatrix},\ \lambda_{A_2\,1,2}=\left\{ -3.79,0.79 \right\}
 $$
 
 
 Таким образом:
 \begin{align*}
     &\left( 0;0 \right):\lambda_{A_1\,1,2}=\left\{ 0,0 \right\}\text{ -- ??},\\
-    &\left( 1;1 \right):\lambda_{A_2\,1,2}=\left\{ -3.7913,0.7913 \right\}\text{ -- седло}
+    &\left( 1;1 \right):\lambda_{A_2\,1,2}=\left\{ -3.79,0.79 \right\}\text{ -- седло}
 \end{align*}
 
 
@@ -820,6 +820,43 @@ $$
         \dot{x}_3=x_1x_3-x_2^3-\sin{x_1}
     \end{cases}\label{syseq:7}
 \end{align}
+
+
+Точки равновесия:
+$$
+\begin{cases}
+    -x_1^3+x_2^3=0,\\
+    x_1+3x_3-x_2^3=0,\\
+    x_1x_3-x_2^3-\sin{x_1}=0
+\end{cases}\Rightarrow\begin{cases}
+    x_2=x_1,\\
+    x_3=3^{-1}x_1\left( x_1^2-1 \right),\\
+    x_1^4-3x_1^3-x_1^2-3\sin{\left( x_1 \right)}=0
+\end{cases}\Rightarrow
+\begin{matrix}
+    \left( 0;0;0 \right)
+\end{matrix}
+$$
+
+
+Матрица Якоби:
+$$
+J=\begin{bmatrix}
+    -3x_1^2&3x_2^2&0\\
+    1&-3x_2^2&3\\
+    x_3-\cos{\left( x_1 \right)}&-3x_2^2&x_1
+\end{bmatrix}
+$$
+
+
+Матрица $A$ и ее собственные числа:
+$$
+A=J|_{\left( 0;0;0 \right)}=\begin{bmatrix}
+    0     &0     &0\\
+     1     &0     &3\\
+    -1     &0     &0
+\end{bmatrix},\ \lambda_{1,2}=\left\{ 0,0,0 \right\}
+$$
 
 
 \section{Задание 2}
