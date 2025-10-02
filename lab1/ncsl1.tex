@@ -200,7 +200,7 @@ $$
 Таким образом, 
 \begin{align*}
     &(0;0):\lambda_{A_1\, 1,2}=\left\{ -1\pm i \right\} \text{ -- устойчивый фокус},\\
-    &(1;-1),(-1;1):\lambda_{A_{2,3}\, 1,2}=\left\{4.8284, -0.8284\right\} \text{ -- седло}
+    &(1;-1),(-1;1):\lambda_{A_{2,3}\, 1,2}=\left\{4.8284, -0.8284\right\} \text{ -- седло (неуст.)}
 \end{align*}
 
 
@@ -571,6 +571,81 @@ $$
 $$
 
 
+Найдем стационарные радиусы через радиальное уравнение:
+$$
+\dot{r}=r\left( 1-r^2 \right),\ r\left( 1-r^2 \right)=0\Rightarrow
+\left[
+\begin{matrix}
+    r=0,\\
+    r=1
+\end{matrix}
+\right.
+$$
+
+
+Получили равновесие в начале координат $r=0$ и окружность (предельный цикл)
+$r=1$.
+
+
+Исследуем устойчивость предельного цикла.
+
+
+Введем малое отклонение:
+$$
+s=r-R\Rightarrow r=s+R,
+$$
+где $R=1$ -- фиксированное значение радиуса равновесия.
+
+
+Введем обозначение:
+$$
+g(r):=\dot{r}=r\left( 1-r^2 \right)
+$$
+
+
+Рассмотрим производную малого отклонения по времени:
+$$
+\dot{s}=\dfrac{d}{dt}\left( r-R \right)=\dot{r}-\dot{R}=\dot{r}\Rightarrow \dot{s}=g\left( s+R \right)
+$$
+
+
+Разложим $g\left( R+s \right)$ в ряд Тейлора:
+$$
+g\left( s+R \right)=g(R)+\dot{g}(R)s+\dfrac{1}{2}\ddot{g}(R)s^2+\hdots\approx g(R)+\dot{g}(R)s+O(s^2)
+$$
+
+
+Рассматриваем в первом приближении полагая, что отклонение $s$ мало, т.е. $s^n\to0$.
+
+
+Найдем $\dot{s}=g\left( s+R \right)$:
+$$
+g\left( R \right)=1\left( 1-1^2 \right)=0,\ \dot{g}(R)=1-3r^2|_{R=1}=-2\Rightarrow \dot{s}=g(s+R)\approx-2s
+$$
+
+
+Решая дифференциальное уравнение $\dot{s}(t)\approx-2s(t)$, получим:
+$$
+s\left( t \right)=Ce^{-2t},\ C=s\left( 0 \right)
+$$
+
+
+Рассмотрим предел малого отклонения при $t\to\infty$:
+$$
+\lim\limits_{t\to\infty}s(t)=\lim\limits_{t\to\infty}Ce^{-2t}=C\cdot0=0
+$$
+
+
+Таким образом:
+$$
+s=\left(r-R\right)\xrightarrow[t \to \infty]{}0\Rightarrow r\xrightarrow[t \to \infty]{}R=1
+$$
+
+
+Все траектории стремятся к окружности радиуса $r=1$, следовательно
+предельный цикл радиально устойчивый (притягивающий).
+
+
 Фазовый портрет:
 \begin{figure}[H]
     \centering
@@ -582,6 +657,7 @@ $$
 
 Точка равновесия совпадает с найденной ранее.
 На портрете есть предельный цикл -- окружность радиуса 1.
+Траектории притягиваются к нему и остаются на нем.
 
 
 \subsubsection{Пятая система}
@@ -594,6 +670,63 @@ $$
 \end{align}
 
 
+Точки равновесия:
+$$
+\begin{cases}
+        -x_1^3+x_2=0,\\
+        x_1-x_2^3=0
+    \end{cases}\Rightarrow\begin{cases}
+        x_1=x_2^3,\\
+        x_2\left( 1-x_2^8 \right)=0
+    \end{cases}\Rightarrow\left[
+\begin{matrix}
+    \left( 0;0 \right),\\
+    \left( 1;1 \right),\\
+    \left( -1;-1 \right)
+\end{matrix}
+\right.
+$$
+
+
+Выражение $x_2^8=1$ дает 8 корней -- 3 комплексные пары и 2 действительных числа.
+Для анализа системы рассматриваем действительные точки равновесия, т.к. они обладают
+физическим смыслом.
+
+
+Матрица Якоби:
+$$
+J=\begin{bmatrix}
+    -3x_1^2&1\\
+    1&-3x_2^2
+\end{bmatrix}
+$$
+
+
+Матрицы $A_i$ и их собственные числа:
+$$
+A_1=J|_{\left( 0;0\right)}=\begin{bmatrix}
+    0 &1\\
+    1 &0
+\end{bmatrix},\ \lambda_{A_1\,1,2}=\left\{ -1,1 \right\},
+$$
+$$
+A_2=J|_{\left( 1;1\right)}=\begin{bmatrix}
+    -3 &1\\
+    1 &-3
+\end{bmatrix},\ \lambda_{A_2\,1,2}=\left\{ -4,-2 \right\},
+$$
+$$
+A_3=J|_{\left( -1;-1\right)}=A_2,\ \lambda_{A_3\,1,2}=\lambda_{A_2\,1,2}
+$$
+
+
+Таким образом:
+\begin{align*}
+    &\left( 0;0 \right):\lambda_{A_1\,1,2}=\left\{ -1,1 \right\}\text{ -- седло},\\
+    &\left( 1;1 \right),\left( -1,-1 \right):\lambda_{A_{2,3}\,1,2}=\left\{ -4,-2 \right\}\text{ -- устойчивые узлы}
+\end{align*}
+
+
 Фазовый портрет:
 \begin{figure}[H]
     \centering
@@ -603,7 +736,8 @@ $$
 \end{figure}
 
 
-Точки равновесия совпадают с найденными ранее.
+Точки равновесия совпадают с найденными ранее. На графике два устойчивых
+узла и седло.
 
 
 \subsubsection{Шестая система}
@@ -614,6 +748,55 @@ $$
         \dot{x}_2=x_2^3x_1-x_2^3
     \end{cases}\label{syseq:6}
 \end{align}
+
+
+Точки равновесия:
+$$
+\begin{cases}
+    -x_1^3+x_2^3=0,\\
+    x_2^3x_1-x_2^3=0
+\end{cases}\Rightarrow
+\begin{cases}
+    x_2=x_1,\\
+    x_1^3\left( x_1-1 \right)=0
+\end{cases}\Rightarrow\left[
+\begin{matrix}
+    \left( 0;0 \right),\\
+    \left( 1;1 \right)
+\end{matrix}
+\right.
+$$
+
+
+Матрица Якоби:
+$$
+J=\begin{bmatrix}
+    -3x_1^2&3x_2^2\\
+    x_2^3&3x_2^2\left(x_1-1\right)
+\end{bmatrix}
+$$
+
+
+Матрицы $A_i$ и их собственные числа:
+$$
+A_1=J|_{\left( 0;0\right)}=\begin{bmatrix}
+    0 &0\\
+    0 &0
+\end{bmatrix},\ \lambda_{A_1\,1,2}=\left\{ 0,0 \right\},
+$$
+$$
+A_2=J|_{\left( 1;1\right)}=\begin{bmatrix}
+    -3 &3\\
+    1 &0
+\end{bmatrix},\ \lambda_{A_2\,1,2}=\left\{ -3.7913,0.7913 \right\}
+$$
+
+
+Таким образом:
+\begin{align*}
+    &\left( 0;0 \right):\lambda_{A_1\,1,2}=\left\{ 0,0 \right\}\text{ -- ??},\\
+    &\left( 1;1 \right):\lambda_{A_2\,1,2}=\left\{ -3.7913,0.7913 \right\}\text{ -- седло}
+\end{align*}
 
 
 Фазовый портрет:

@@ -2,8 +2,8 @@
 syms x1 x2
 
 % change sys (1)
-dx1 = (x1-x2)*(1-x1^2-x2^2);
-dx2 = (x1+x2)*(1-x1^2-x2^2);
+dx1 = -x1^3+x2^3;
+dx2 = x2^3*x1-x2^3;
 
 eqns = [dx1 == 0, dx2 == 0];
 S = solve(eqns, [x1, x2], 'Real', true);
