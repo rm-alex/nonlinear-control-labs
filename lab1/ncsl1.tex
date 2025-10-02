@@ -506,6 +506,71 @@ r=\sqrt{x_1^2+x_2^2},\ \ \theta=\arctan{\dfrac{x_2}{x_1}},\ \
 $$
 
 
+Приведем систему (\ref{syseq:4}) к виду:
+$$
+\dot{r}=\dfrac{x_1\dot{x}_1+x_2\dot{x}_2}{r}
+$$
+Эта формула получается при взятии производной от
+выражения $r$ с корнем.
+
+
+Домножим оба выражения на недостающие $x_i$:
+$$
+\begin{cases}
+    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot x_1,\\
+    \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_2
+\end{cases}\Rightarrow\begin{cases}
+    x_1\dot{x}_1=x_1\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
+    x_2\dot{x}_2=x_2\left( x_1+x_2 \right)\left( 1-r^2 \right)
+\end{cases}
+$$
+
+
+Сложим два выражения, вынесем общий множитель и упростим:
+$$
+x_1\dot{x}_1+x_2\dot{x}_2=\left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right),
+$$
+$$
+\left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right)
+=\left( x_1^2+x_2^2 \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
+$$
+
+
+Разделим на $r$ и получим:
+$$
+\dot{r}=\dfrac{x_1\dot{x}_1+x_2\dot{x}_2}{r}=r\left( 1-r^2 \right)
+$$
+
+
+Аналогично выведем производную полярного угла:
+$$
+\dot{\theta}=\dfrac{x_1\dot{x}_2-x_2\dot{x}_1}{r^2}
+$$
+Эта формула получается при взятии производной от выражения $\theta$
+с арктангенсом.
+
+
+Приведем систему:
+$$
+\begin{cases}
+    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot (-x_2),\\
+    \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_1
+\end{cases}\Rightarrow\begin{cases}
+    -x_2\dot{x}_1=-x_2\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
+    x_1\dot{x}_2=x_1\left( x_1+x_2 \right)\left( 1-r^2 \right)
+\end{cases}
+$$
+$$
+x_1\dot{x}_2-x_2\dot{x}_1=\left( x_1\left( x_1+x_2 \right)-x_2\left( x_1-x_2 \right) \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
+$$
+
+
+Разделим на $r^2$ и получим:
+$$
+\dot{\theta}=\dfrac{x_1\dot{x}_2-x_2\dot{x}_1}{r^2}=1-r^2
+$$
+
+
 Фазовый портрет:
 \begin{figure}[H]
     \centering
