@@ -2,23 +2,31 @@
 syms x1 x2 x3
 
 % change sys (1)
-dx1 = -x1^3+x2^3;
-dx2 = x1+3*x3-x2^3;
-dx3 = x1*x3 - x2^3 - sin(x1);
+u1 = 0;
+u2 = 0;
 
-eqns = [dx1 == 0, dx2 == 0, dx3 == 0];
-S = solve(eqns, [x1, x2, x3], 'Real', true);
+dx1 = -x1+2*x1^3+x2+sin(u1);
+dx2 = -x1-x2+3*sin(u2);
+% dx3 = x1*x3 - x2^3 - sin(x1);
+
+% eqns = [dx1 == 0, dx2 == 0, dx3 == 0];
+% S = solve(eqns, [x1, x2, x3], 'Real', true);
+eqns = [dx1 == 0, dx2 == 0];
+S = solve(eqns, [x1, x2], 'Real', true);
 
 x1_eq = double(S.x1);
 x2_eq = double(S.x2);
-x3_eq = double(S.x3);
+% x3_eq = double(S.x3);
 
-J = jacobian([dx1; dx2; dx3], [x1, x2, x3]);
+% J = jacobian([dx1; dx2; dx3], [x1, x2, x3]);
+J = jacobian([dx1; dx2], [x1, x2]);
+
 
 for k = 1:length(x1_eq)
-    Jk = double(subs(J, [x1, x2, x3], [x1_eq(k), x2_eq(k), x3_eq(k)]));
+    % Jk = double(subs(J, [x1, x2, x3], [x1_eq(k), x2_eq(k), x3_eq(k)]));
+    Jk = double(subs(J, [x1, x2], [x1_eq(k), x2_eq(k)]));
     lambdak = eig(Jk);
-    fprintf('Точка равновесия (%.3f, %.3f, %.3f):\n', x1_eq(k), x2_eq(k), x3_eq(k));
+    fprintf('Точка равновесия (%.3f, %.3f):\n', x1_eq(k), x2_eq(k));
     disp(Jk)
     disp(lambdak)
 end
@@ -96,3 +104,11 @@ legend([h1, h2, h3, h4], ...
        {'Поле направлений','Траектории','Точки равновесия', 'Множество равновесий'}, ...
        'Location','best');
 axis([-3 3 -3 3]);
+
+%% 2
+A = [5 1; -1 -1];
+B = [-1 0; 0 -3];
+[P, J] = jordan(A)
+B2 = inv(P)*B
+
+K = place(A, B, [-1 -2])

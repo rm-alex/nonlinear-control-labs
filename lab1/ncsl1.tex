@@ -1006,6 +1006,65 @@ $\dot{V}>0$ в некоторой окрестности нуля,
 \end{align}
 
 
+Точки равновесия:
+$$\begin{cases}
+    -x_1+2x_1^3+x_2+\sin{\left(u_1\right)}=0,\\
+    -x_1-x_2+3\sin{\left(u_2\right)}=0
+\end{cases}\Rightarrow\left[
+\begin{matrix}
+    \left( 0;0 \right),\\
+    \left( 1;-1 \right),\\
+    \left( -1;1 \right)
+\end{matrix}
+\right.$$
+
+
+% Матрицы Якоби:
+% $$
+% J_A=\begin{bmatrix}
+%     -1+6x_1^2&1\\-1&-1
+% \end{bmatrix},\ J_B=\begin{bmatrix}
+%     \cos{\left( u_1 \right)}&0\\0&3\cos{\left( u_2 \right)}
+% \end{bmatrix}
+% $$
+
+
+% Линеаризуем около точки равновесия $\left( -1;1 \right),u_i=0$:
+% $$
+% A=J|_{\left( -1;1 \right)}=\begin{bmatrix}
+%     5&1\\-1&-1
+% \end{bmatrix},\ B=J_B|_{u_i=0}=\begin{bmatrix}
+%     1&0\\0&3
+% \end{bmatrix}
+% $$
+
+
+Собственные числа системы:
+$$
+\sigma\left( A \right)=\left\{ 4.8284,-0.8284 \right\}
+$$
+
+
+Система неустойчива. Нужно управление. Проверим управляемость:
+$$
+A=PJP^{-1},\ J=\begin{bmatrix}
+    -0.8284        & 0\\
+         0   & 4.8284
+\end{bmatrix},\ B_J=P^{-1}B=\begin{bmatrix}
+    0.18    &3.09\\
+   -0.18  & -0.09
+\end{bmatrix}
+$$
+
+
+Система полностью управляема (неустойчивому собственному значению соответствуют
+ненулевые элементы матрицы $B_J$).
+
+
+Синтезируем локально стабилизирующий
+регулятор по состоянию:
+
+
 \subsubsection{Вторая система}
 Рассмотрим систему:
 \begin{align}
