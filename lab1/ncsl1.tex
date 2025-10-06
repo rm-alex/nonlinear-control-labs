@@ -68,9 +68,9 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=cyan,
-    pdftitle={GOST report template},
+    pdftitle={ncs1},
     pdfauthor={Rumyantsev Alexey},
-    pdfsubject={report subject},
+    pdfsubject={control},
     pdfkeywords={LaTeX, PDF},
     pdfpagemode=FullScreen,
 }
@@ -423,28 +423,19 @@ $$
 \end{align}
 
 
-Сделаем замену $r^2=x_1^2+x_2^2$, тогда:
+Точки равновесия:
 $$
 \begin{cases}
-    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
-        \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right)
+    \left( x_1-x_2 \right)\left( 1-\left( x_1^2+x_2^2 \right) \right)=0,\\
+    \left( x_1+x_2 \right)\left( 1-\left( x_1^2+x_2^2 \right) \right)=0
 \end{cases}
 $$
 
 
-Найдем точки равновесия:
+Рассмотрим случай $1-\left( x_1^2+x_2^2 \right)\neq0$:
 $$
 \begin{cases}
-    \left( x_1-x_2 \right)\left( 1-r^2 \right)=0,\\
-    \left( x_1+x_2 \right)\left( 1-r^2 \right)=0
-\end{cases}
-$$
-
-
-Рассмотрим случай $1-r^2\neq0$:
-$$
-\begin{cases}
-    1-r^2\neq0,\\
+    1-\left( x_1^2+x_2^2 \right)\neq0,\\
     x_1-x_2=0,\\
     x_1+x_2=0
 \end{cases}\Rightarrow\begin{cases}
@@ -457,20 +448,17 @@ $$
 $$
 
 
-Рассмотрим случай $1-r^2=0$:
+Рассмотрим случай $1-\left( x_1^2+x_2^2 \right)=0$:
 $$
 \begin{cases}
-    1-r^2=0,\\
+    1-\left( x_1^2+x_2^2 \right)=0,\\
     x_1-x_2\neq0,\\
     x_1+x_2\neq0
-\end{cases}\Rightarrow\begin{cases}
-    r=1\ \left( \sum x_i^2\neq-1 \right),\\
-    x_1^2+x_2^2=1
 \end{cases}\Rightarrow\left\{ \left( x_1,x_2 \right)|\, x_1^2+x_2^2=1 \right\}
 $$
 
 
-В случае $1-r^2=0$ единичная окружность является множеством равновесий.
+В случае $x_1^2+x_2^2=1$ окружность единичного радиуса является множеством равновесий.
 
 
 Матрица Якоби:
@@ -496,7 +484,7 @@ $$
 больше нуля.
 
 
-Для поиска предельного цикла перейдем к полярным координатам:
+Перейдем к полярным координатам:
 $$
 r=\sqrt{x_1^2+x_2^2},\ \ \theta=\arctan{\dfrac{x_2}{x_1}},\ \
 \begin{cases}
@@ -508,67 +496,67 @@ $$
 
 Приведем систему (\ref{syseq:4}) к виду:
 $$
-\dot{r}=\dfrac{x_1\dot{x}_1+x_2\dot{x}_2}{r}
-$$
-Эта формула получается при взятии производной от
-выражения $r$ с корнем.
-
-
-Домножим оба выражения на недостающие $x_i$:
-$$
-\begin{cases}
-    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot x_1,\\
-    \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_2
-\end{cases}\Rightarrow\begin{cases}
-    x_1\dot{x}_1=x_1\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
-    x_2\dot{x}_2=x_2\left( x_1+x_2 \right)\left( 1-r^2 \right)
-\end{cases}
-$$
-
-
-Сложим два выражения, вынесем общий множитель и упростим:
-$$
-x_1\dot{x}_1+x_2\dot{x}_2=\left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right),
-$$
-$$
-\left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right)
-=\left( x_1^2+x_2^2 \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
-$$
-
-
-Разделим на $r$ и получим:
-$$
 \dot{r}=\dfrac{x_1\dot{x}_1+x_2\dot{x}_2}{r}=r\left( 1-r^2 \right)
 $$
+% Эта формула получается при взятии производной от
+% выражения $r$ с корнем.
+
+
+% Домножим оба выражения на недостающие $x_i$:
+% $$
+% \begin{cases}
+%     \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot x_1,\\
+%     \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_2
+% \end{cases}\Rightarrow\begin{cases}
+%     x_1\dot{x}_1=x_1\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
+%     x_2\dot{x}_2=x_2\left( x_1+x_2 \right)\left( 1-r^2 \right)
+% \end{cases}
+% $$
+
+
+% Сложим два выражения, вынесем общий множитель и упростим:
+% $$
+% x_1\dot{x}_1+x_2\dot{x}_2=\left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right),
+% $$
+% $$
+% \left( x_1\left( x_1-x_2 \right)+x_2\left( x_1+x_2 \right) \right)\left( 1-r^2 \right)
+% =\left( x_1^2+x_2^2 \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
+% $$
+
+
+% Разделим на $r$ и получим:
+% $$
+% \dot{r}=\dfrac{x_1\dot{x}_1+x_2\dot{x}_2}{r}=r\left( 1-r^2 \right)
+% $$
 
 
 Аналогично выведем производную полярного угла:
 $$
-\dot{\theta}=\dfrac{x_1\dot{x}_2-x_2\dot{x}_1}{r^2}
-$$
-Эта формула получается при взятии производной от выражения $\theta$
-с арктангенсом.
-
-
-Приведем систему:
-$$
-\begin{cases}
-    \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot (-x_2),\\
-    \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_1
-\end{cases}\Rightarrow\begin{cases}
-    -x_2\dot{x}_1=-x_2\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
-    x_1\dot{x}_2=x_1\left( x_1+x_2 \right)\left( 1-r^2 \right)
-\end{cases}
-$$
-$$
-x_1\dot{x}_2-x_2\dot{x}_1=\left( x_1\left( x_1+x_2 \right)-x_2\left( x_1-x_2 \right) \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
-$$
-
-
-Разделим на $r^2$ и получим:
-$$
 \dot{\theta}=\dfrac{x_1\dot{x}_2-x_2\dot{x}_1}{r^2}=1-r^2
 $$
+% Эта формула получается при взятии производной от выражения $\theta$
+% с арктангенсом.
+
+
+% Приведем систему:
+% $$
+% \begin{cases}
+%     \dot{x}_1=\left( x_1-x_2 \right)\left( 1-r^2 \right) |\cdot (-x_2),\\
+%     \dot{x}_2=\left( x_1+x_2 \right)\left( 1-r^2 \right) |\cdot x_1
+% \end{cases}\Rightarrow\begin{cases}
+%     -x_2\dot{x}_1=-x_2\left( x_1-x_2 \right)\left( 1-r^2 \right),\\
+%     x_1\dot{x}_2=x_1\left( x_1+x_2 \right)\left( 1-r^2 \right)
+% \end{cases}
+% $$
+% $$
+% x_1\dot{x}_2-x_2\dot{x}_1=\left( x_1\left( x_1+x_2 \right)-x_2\left( x_1-x_2 \right) \right)\left( 1-r^2 \right)=r^2\left( 1-r^2 \right)
+% $$
+
+
+% Разделим на $r^2$ и получим:
+% $$
+% \dot{\theta}=\dfrac{x_1\dot{x}_2-x_2\dot{x}_1}{r^2}=1-r^2
+% $$
 
 
 Найдем стационарные радиусы через радиальное уравнение:
@@ -596,11 +584,11 @@ $r=1$.
 Подставим $r^2=x_1^2+x_2^2=1$ в систему (\ref{syseq:4}):
 $$
 \begin{cases}
-        \dot{x}_1|_{r=1}=\left( x_1-x_2 \right)\left( 1-1 \right),\\
-        \dot{x}_2|_{r=1}=\left( x_1+x_2 \right)\left( 1-1 \right)
+        \dot{x}_1|_{x_1^2+x_2^2=1}=\left( x_1-x_2 \right)\left( 1-1 \right),\\
+        \dot{x}_2|_{x_1^2+x_2^2=1}=\left( x_1+x_2 \right)\left( 1-1 \right)
     \end{cases}\Rightarrow\begin{cases}
-        \dot{x}_1|_{r=1}=0,\\
-        \dot{x}_2|_{r=1}=0
+        \dot{x}_1|_{x_1^2+x_2^2=1}=0,\\
+        \dot{x}_2|_{x_1^2+x_2^2=1}=0
     \end{cases}
 $$
 
@@ -611,11 +599,13 @@ $$
 множество равновесий на окружности радиуса $r=1$.
 
 
-Проверим устойчивость множества равновесий по радиальному направлению. Введем малое отклонение:
+Проверим устойчивость множества равновесий по радиальному направлению.
+
+
+Зафиксируем радиус равновесия $R=1$ и введем малое отклонение:
 $$
-s=r-R\Rightarrow r=s+R,
+s=r-R\Rightarrow r=s+R
 $$
-где $R=1$ -- фиксированное значение радиуса равновесия.
 
 
 Введем обозначение:
@@ -636,7 +626,7 @@ g\left( s+R \right)=g(R)+\dot{g}(R)s+\dfrac{1}{2}\ddot{g}(R)s^2+\hdots\approx g(
 $$
 
 
-Рассматриваем в первом приближении полагая, что отклонение $s$ мало, т.е. $s^n\to0$.
+Первое приближение -- полагаем отклонение $s$ мало, т.е. $s^n\to0$.
 
 
 Найдем $\dot{s}=g\left( s+R \right)$:
@@ -653,13 +643,16 @@ $$
 
 Рассмотрим предел малого отклонения при $t\to\infty$:
 $$
-\lim\limits_{t\to\infty}s(t)=\lim\limits_{t\to\infty}Ce^{-2t}=C\cdot0=0
+\lim\limits_{t\to\infty}s(t)=\lim\limits_{t\to\infty}Ce^{-2t}=C\cdot0=0,
+$$
+$$
+s=\left(r-R\right)\xrightarrow[t \to \infty]{}0
 $$
 
 
-Таким образом:
+Тогда радиус:
 $$
-s=\left(r-R\right)\xrightarrow[t \to \infty]{}0\Rightarrow r\xrightarrow[t \to \infty]{}R=1
+r\xrightarrow[t \to \infty]{}R=1
 $$
 
 
@@ -864,10 +857,10 @@ $$
 $$
 
 
-При $r\to0$ степенные члены отрицательны, возмущение $O\left( r^5 \right)$ мало:
-$$
+При $r\to0$ степенные члены отрицательны, $O\left( r^5 \right)$ мало:
+$
 \dot{V}<0
-$$
+$.
 
 
 Таким образом:
@@ -1019,24 +1012,66 @@ $$\begin{cases}
 \right.$$
 
 
-% Матрицы Якоби:
-% $$
-% J_A=\begin{bmatrix}
-%     -1+6x_1^2&1\\-1&-1
-% \end{bmatrix},\ J_B=\begin{bmatrix}
-%     \cos{\left( u_1 \right)}&0\\0&3\cos{\left( u_2 \right)}
-% \end{bmatrix}
-% $$
+Линейное локальное управление:
+$$
+u-u_{ss}=-K\left( x-x_{ss} \right),
+$$
+где $x_{ss}$ -- точка равновесия, $u_{ss}$
+-- управляющее воздействие, которое удерживает систему в равновесии.
 
 
-% Линеаризуем около точки равновесия $\left( -1;1 \right),u_i=0$:
-% $$
-% A=J|_{\left( -1;1 \right)}=\begin{bmatrix}
-%     5&1\\-1&-1
-% \end{bmatrix},\ B=J_B|_{u_i=0}=\begin{bmatrix}
-%     1&0\\0&3
-% \end{bmatrix}
-% $$
+Найдем $u_{ss}$ при $\dot{x}_1=0,\dot{x}_2=0$ в точке равновесия $\left( -1;1 \right)$:
+$$
+\begin{cases}
+    1-2+1+\sin{\left(u_1\right)}=0,\\
+    1-1+3\sin{\left(u_2\right)}=0
+\end{cases}\Rightarrow\begin{cases}
+    \sin{u_1}=0,\\
+    \sin{u_2}=0
+\end{cases}\Rightarrow\begin{cases}
+    u_1^{ss}=\pi n, n\in\mathbb{Z},\\
+u_2^{ss}=\pi n, n\in \mathbb{Z}
+\end{cases}
+$$
+
+
+При условии $u_{ss}\neq0$ выберем:
+$$
+u_{ss}=\begin{bmatrix}
+    u_{1}^{ss}\\u_{2}^{ss}
+\end{bmatrix}=\begin{bmatrix}
+    \pi\\\pi
+\end{bmatrix}
+$$
+
+
+Обозначим:
+$$
+\tilde{x}=x-x_{ss},\ \tilde{u}=u-u_{ss}
+$$
+
+
+Составим систему:
+$$
+\dot{\tilde{x}}=A\tilde{x}+B\tilde{u}
+$$
+
+
+Найдем матрицы $A,B$:
+$$
+A=\dfrac{\partial f}{\partial x}\bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    -1+6x_1^2&1\\-1&-1
+\end{bmatrix}\Bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    5&1\\-1&-1
+\end{bmatrix},
+$$
+$$
+B=\dfrac{\partial f}{\partial u}\bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    \cos{\left( u_1 \right)}&0\\0&3\cos{\left( u_2 \right)}
+\end{bmatrix}\Bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    -1&0\\0&-3
+\end{bmatrix}
+$$
 
 
 Собственные числа системы:
@@ -1051,8 +1086,8 @@ A=PJP^{-1},\ J=\begin{bmatrix}
     -0.8284        & 0\\
          0   & 4.8284
 \end{bmatrix},\ B_J=P^{-1}B=\begin{bmatrix}
-    0.18    &3.09\\
-   -0.18  & -0.09
+    -0.18   &-3.09\\
+    0.18    &0.09
 \end{bmatrix}
 $$
 
@@ -1063,6 +1098,91 @@ $$
 
 Синтезируем локально стабилизирующий
 регулятор по состоянию:
+$$
+\tilde{u}=-K\tilde{x},\ K=\begin{bmatrix}
+    k_1&k_2\\k_3&k_4
+\end{bmatrix},\ \dot{\tilde{x}}=\left( A-BK \right)\tilde{x},
+$$
+$$
+A-BK=\begin{bmatrix}
+    5&1\\-1&-1
+\end{bmatrix}-\begin{bmatrix}
+    -1&0\\0&-3
+\end{bmatrix}\begin{bmatrix}
+     k_1&k_2\\k_3&k_4
+\end{bmatrix}=\begin{bmatrix}
+  k_1+5	  &k_2+1\\
+3k_3-1	&3k_4-1
+\end{bmatrix}
+$$
+
+
+Условия устойчивости:
+$$
+\begin{cases}
+    \operatorname{trace}\left( A-BK \right)<0,\\
+    \det{\left( A-BK \right)}>0,\\
+    \Re{\left( \lambda_i \right)}<0
+\end{cases}$$
+$$
+\begin{cases}
+    \operatorname{trace}\left( A-BK \right)=k_1+3k_4+4<0,\\
+    \det{\left( A-BK \right)}=-k_1+k_2-3k_2k_3-3k_3+3k_1k_4+15k_4-4>0
+\end{cases}
+$$
+
+
+Пусть:
+$$
+K=\begin{bmatrix}
+    -6&0\\0&0.5
+\end{bmatrix}\Rightarrow\begin{cases}
+    -6+3\cdot0.5+4=-0.5<0,\\
+    6-3\cdot6\cdot0.5+15\cdot0.5-4=0.5>0
+\end{cases}
+$$
+
+
+Собственные числа замкнутой системы:
+$$
+\sigma\left( A-BK \right)=\left\{  -0.25 \pm 0.66i \right\}
+$$
+
+
+Схема моделирования:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{sch1.png}
+    \caption{Схема моделирования системы}
+    \label{fig:sch1}
+\end{figure}
+
+
+В схеме учтено смещение $u=u_{ss}-K\left( x-x_{ss} \right)$.
+
+
+Начальные условия:
+$$x_0=\begin{bmatrix}
+    -0.9\\1.1
+\end{bmatrix}$$
+
+
+Графики вектора состояния системы и управления: % 1001,205,953,498
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{sch1m.png}
+    \caption{Вектор состояния объекта управления}
+    \label{fig:sch1m}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{sch1m2.png}
+    \caption{Управление $u=u_{ss}-K\left( x-x_{ss} \right)$}
+    \label{fig:sch1m2}
+\end{figure}
+
+
+Система стабилизировалась в точке равновесия $\left( -1;1 \right)$.
 
 
 \subsubsection{Вторая система}
@@ -1075,8 +1195,166 @@ $$
 \end{align}
 
 
+Точки равновесия:
+$$
+\begin{cases}
+    x_2+x_1x_2+u^3=0,\\
+    -x_2+x_2^2-x_1^3+\sin{\left( u \right)}=0
+\end{cases}\Rightarrow\left( 0;0 \right)
+$$
+
+
+Найдем $u_{ss}$ в точке равновесия:
+$$
+\begin{cases}
+    u^3=0,\\\sin{\left( u \right)}=0
+\end{cases}\Rightarrow\begin{cases}
+    u=0,\\u=\pi n, n\in\mathbb{Z}
+\end{cases}\Rightarrow u_{ss}=0 
+$$
+
+
+Составим систему. Так как $x_{ss}=\left( 0;0 \right)$ и $u_{ss}=0$:
+$$
+\dot{x}=Ax+Bu,\ u=-Kx
+$$
+
+
+Найдем матрицы $A,B$:
+$$
+A=\dfrac{\partial f}{\partial x}\bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    x_2&1+x_1\\-3x_1^2&-1+2x_2
+\end{bmatrix}\Bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    0&1\\0&-1
+\end{bmatrix},
+$$
+$$
+B=\dfrac{\partial f}{\partial u}\bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    3u^2\\\cos{\left( u \right)}
+\end{bmatrix}\Bigg|_{x_{ss},u_{ss}}=\begin{bmatrix}
+    0\\1
+\end{bmatrix}
+$$
+
+
+Собственные числа системы:
+$$
+\sigma\left( A \right)=\left\{ 0,-1 \right\}
+$$
+
+
+Система устойчива, не асимптотически.
+
+
+Управляемость:
+$$
+J=\begin{bmatrix}
+    0    & 0\\
+     0    &-1
+\end{bmatrix},\ B_J=\begin{bmatrix}
+    1\\1
+\end{bmatrix}
+$$
+
+
+Система полностью управляема.
+
+
+Синтезируем регулятор:
+$$
+K=\begin{bmatrix}
+    k_1&k_2
+\end{bmatrix},\ \dot{x}=\left( A-BK \right)x,
+$$
+$$
+A-BK=\begin{bmatrix}
+     0&1\\0&-1
+\end{bmatrix}-\begin{bmatrix}
+    0\\1
+\end{bmatrix}\begin{bmatrix}
+    k_1&k_2
+\end{bmatrix}=\begin{bmatrix}
+   0	    & 1\\
+-k_1	&-k_2-1
+\end{bmatrix}
+$$
+
+
+Условия устойчивости:
+$$
+\begin{cases}
+    \operatorname{trace}\left( A-BK \right)<0,\\
+    \det{\left( A-BK \right)}>0,\\
+    \Re{\left( \lambda_i \right)}<0
+\end{cases}\Rightarrow\begin{cases}
+    -k_2-1<0,\\
+    k_1>0
+\end{cases}
+$$
+
+
+Пусть:
+$$
+K=\begin{bmatrix}
+    2&2
+\end{bmatrix}\Rightarrow\begin{cases}
+    -2-1=-3<0,\\
+    2>0
+\end{cases}
+$$
+
+
+Собственные числа:
+$$
+\sigma\left( A-BK \right)=\left\{ -1,-2 \right\}
+$$
+
+
+Схема моделирования аналогична рис. (\ref{fig:sch1}).
+В блоке $u_{ss}$ константа 0, в $x_{ss}$ нулевой вектор.
+
+
+Начальные условия:
+$$
+x_0=\begin{bmatrix}
+    0.2\\-0.2
+\end{bmatrix}
+$$
+
+
+Графики вектора состояния системы и управления:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{sch2m.png}
+    \caption{Вектор состояния объекта управления}
+    \label{fig:sch2m}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{sch2m2.png}
+    \caption{Управление $u=-K\left( x \right)$}
+    \label{fig:sch2m2}
+\end{figure}
+
+
+Система стабилизировалась в точке равновесия $\left( 0;0 \right)$.
+
+
 \section{Вывод}
-...
+В ходе выполнения лабораторной работы
+для различных нелинейных систем
+были найдены точки равновесия
+и определены их типы
+методом линеаризации.
+Для одной из систем был исследован
+предельный цикл -- в результате
+был сделан вывод, что это множество равновесий.
+Были построены фазовые портреты систем.
+Результаты моделирования подтвердили вычисления.
+Были синтезированы локально стабилизирующие
+регуляторы для нелинейных систем и проверены
+моделированием -- регуляторы синтезированы корректно.
+
 
 % \appendix
 % \renewcommand{\thesection}{\Asbuk{section}}

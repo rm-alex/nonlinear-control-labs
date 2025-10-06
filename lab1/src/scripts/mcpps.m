@@ -2,11 +2,12 @@
 syms x1 x2 x3
 
 % change sys (1)
-u1 = 0;
-u2 = 0;
+% u1 = 0;
+% u2 = 0;
+u = 0;
 
-dx1 = -x1+2*x1^3+x2+sin(u1);
-dx2 = -x1-x2+3*sin(u2);
+dx1 = x2+x1*x2+u^3;
+dx2 = -x2+x2^2-x1^3+sin(u);
 % dx3 = x1*x3 - x2^3 - sin(x1);
 
 % eqns = [dx1 == 0, dx2 == 0, dx3 == 0];
@@ -111,4 +112,26 @@ B = [-1 0; 0 -3];
 [P, J] = jordan(A)
 B2 = inv(P)*B
 
-K = place(A, B, [-1 -2])
+% K = place(A, B, [-1 -2])
+K = [-6 0; 0 0.5]
+
+trace(A-B*K)
+det(A-B*K)
+eig(A-B*K)
+
+set_param('sim1/K', 'Gain', mat2str(K));
+
+%% 22
+A = [0 1; 0 -1];
+B = [0; 1];
+[P, J] = jordan(A)
+B2 = inv(P)*B
+
+% K = place(A, B, [-1 -2])
+K = [2 2]
+
+trace(A-B*K)
+det(A-B*K)
+eig(A-B*K)
+
+set_param('sim2/K', 'Gain', mat2str(K));
