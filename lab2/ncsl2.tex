@@ -1,0 +1,220 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage{tempora}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bfseries\centering\MakeUppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]{\bfseries}{\thesubsubsection.}{1em}{}
+
+\renewcommand{\contentsname}{\hfill \textbf{СОДЕРЖАНИЕ} \hfill\null}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{cmap}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.7}
+
+\lstdefinestyle{code}{
+    language=Python, % change if needed
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\small\color{LightGray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    rulecolor=\color{LightGray},
+    linewidth=\linewidth,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{violet},
+    escapeinside={\%*}{*)},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt
+}
+\lstset{style=code}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={ncs1},
+    pdfauthor={Rumyantsev Alexey},
+    pdfsubject={control},
+    pdfkeywords={LaTeX, PDF},
+    pdfpagemode=FullScreen,
+}
+
+\graphicspath{{src/images/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+        \vspace*{2.5mm}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО»\\
+        \vspace*{2.5mm}
+        \textbf{ФАКУЛЬТЕТ СИСТЕМ УПРАВЛЕНИЯ И РОБОТОТЕХНИКИ}
+        \vfill
+
+        {\large ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №3}\\
+        {\large по дисциплине}\\
+        {\large\bfseries «НЕЛИНЕЙНЫЕ СИСТЕМЫ УПРАВЛЕНИЯ»}\\
+        {\large на тему}\\
+        {\large\bfseries «ЛИНЕАРИЗАЦИЯ ПО ВХОДУ–ВЫХОДУ И ПРОЕКТИРОВАНИЕ ОБРАТНОЙ СВЯЗИ ПО СОСТОЯНИЮ»}\\
+        \vfill
+
+        \begin{flushright}
+            Выполнил: студент гр. R3441\\
+            Румянцев А. А.\medskip\\
+
+            Проверил: преподаватель\\
+            Зименко К. А.
+        \end{flushright}
+
+        \vfill
+
+        Санкт-Петербург\\
+        2025
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Задание 1}
+\subsection{Условие}
+Для данной системы определить:
+\begin{itemize}
+    \item Является ли эта система линеаризуемой по входу–выходу?
+    \item Если да, преобразуйте её в нормальную форму и укажите область определения соответствующего преобразования
+    \item Является ли эта система минимально-фазовой?
+\end{itemize}
+
+
+\subsection{Выполнение}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-x_1+x_2-x_3,\\
+        \dot{x}_2=-x_1x_3-x_2+u,\\
+        \dot{x}_3=-x_1+u,\\
+        y=x_3
+    \end{cases}\label{syseq:1}
+\end{align}
+
+
+Нелинейная система:
+$$
+\dot{x}=f(x)+g(x)u
+$$
+
+
+Производная от выхода $y=h(x)$:
+$$
+\dot{y}=L_fh(x)+L_gh(x)u
+$$
+
+
+Производная Ли функции h вдоль поля f:
+$$
+L_fh(x)=\frac{\partial h}{\partial x}f(x)=\begin{bmatrix}
+    0&0&1
+\end{bmatrix}\begin{bmatrix}
+    -x_1+x_2-x_3\\-x_1x_3-x_2\\-x_1
+\end{bmatrix}=-x_1
+$$
+
+
+Вдоль поля g:
+$$
+L_gh(x)=\frac{\partial h}{\partial x}g(x)=\begin{bmatrix}
+    0&0&1
+\end{bmatrix}\begin{bmatrix}
+    0\\1\\1
+\end{bmatrix}=1
+$$
+
+
+Производная выхода:
+$$
+\dot{y}=\dot{x}_3=-x_1+u
+$$
+
+
+Первая производная выхода зависит от $u$,
+следовательно относительная степень
+нелинейной системы $\rho=1$.
+
+
+Так как $L_gL_f^{\rho-1}h(x)=L_gh(x)=1\neq0$, $\rho<2$ и $\rho=1<n=3$, то система линеаризуема по входу–выходу
+(вход появляется именно в $\rho$-й производной; так как производная потребовалась всего одна, то
+условие на непоявление входа раньше $\rho$-й производной $L_gL_f^kh(x)=0,k\in\left[ 0,\rho-2 \right]$ проверять не нужно;
+$\rho\leq n$ -- относительная степень не больше порядка системы).
+
+
+Обратная связь:
+$$
+u=\frac{-L_f^{\rho}h(x)+v}{L_gL_f^{\rho-1}h(x)}=\frac{-L_fh(x)+v}{L_gh(x)}=x_1+v
+$$
+
+
+Подставим полученное $u$ в производную выхода:
+$$
+\dot{y}=-x_1+\left( x_1+v \right)=v
+$$
+
+
+Динамика между $v$ и $y$ сведена к одному интегратору.
+
+
+\section{Задание 2}
+\subsection{Условие}
+На основе метода линеаризации обратной связью найдите закон
+управления с обратной связью по состоянию, обеспечивающий
+глобальную стабилизацию начала координат для данной системы.
+
+
+\subsection{Выполнение}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-x_1+x_2,\\
+        \dot{x}_2=x_1-x_2-x_1x_3+u,\\
+        \dot{x}_3=x_1+x_1x_2-2x_3
+    \end{cases}\label{syseq:2}
+\end{align}
+\end{document}
