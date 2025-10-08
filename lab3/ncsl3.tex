@@ -137,9 +137,25 @@
 \end{align}
 
 
+Точки равновесия при $\dot{x}=0,u=0$:
+$$
+\begin{cases}
+        -x_1+x_2-x_3=0,\\
+        -x_1x_3-x_2=0,\\
+        -x_1=0
+    \end{cases}\Rightarrow\begin{cases}
+        x_1=0,\\x_2=0,\\x_3=x_2
+    \end{cases}\Rightarrow\left( 0,0,0 \right)
+$$
+
+
 Нелинейная система:
 $$
-\dot{x}=f(x)+g(x)u
+\dot{x}=f(x)+g(x)u,\ f(x)=\begin{bmatrix}
+    -x_1+x_2-x_3\\-x_1x_3-x_2\\-x_1
+\end{bmatrix},\ g(x)=\begin{bmatrix}
+    0\\1\\1
+\end{bmatrix}
 $$
 
 
@@ -186,19 +202,199 @@ $$
 $\rho\leq n$ -- относительная степень не больше порядка системы).
 
 
-Обратная связь:
+% Обратная связь:
+% $$
+% u=\frac{-L_f^{\rho}h(x)+v}{L_gL_f^{\rho-1}h(x)}=\frac{-L_fh(x)+v}{L_gh(x)}=x_1+v
+% $$
+
+
+% Подставим полученное $u$ в производную выхода:
+% $$
+% \dot{y}=-x_1+\left( x_1+v \right)=v
+% $$
+
+
+% Динамика между $v$ и $y$ сведена к одному интегратору.
+
+
+Замена переменных:
 $$
-u=\frac{-L_f^{\rho}h(x)+v}{L_gL_f^{\rho-1}h(x)}=\frac{-L_fh(x)+v}{L_gh(x)}=x_1+v
+z=T(x)=\begin{bmatrix}
+    \phi_1(x)\\ \phi_2(x) \\ h(x)
+\end{bmatrix}=\begin{bmatrix}
+    \eta_1\\\eta_2\\\xi
+\end{bmatrix}
 $$
 
 
-Подставим полученное $u$ в производную выхода:
+Условие:
 $$
-\dot{y}=-x_1+\left( x_1+v \right)=v
+\frac{\partial \phi_i}{\partial x}g(x)=0,\ i=1,...,n-\rho
 $$
 
 
-Динамика между $v$ и $y$ сведена к одному интегратору.
+Исходя из $g(x)$:
+$$
+\frac{\partial \phi_i}{\partial x_2}+\frac{\partial \phi_i}{\partial x_3}=0
+$$
+
+
+Пусть:
+$$
+\begin{cases}
+    \phi_1=x_1,\\
+    \phi_2=x_2-x_3
+\end{cases}
+$$
+
+
+Тогда:
+$$
+\frac{\partial \phi_1}{\partial x}g(x)=\begin{bmatrix}
+    1&0&0
+\end{bmatrix}\begin{bmatrix}
+    0\\1\\1
+\end{bmatrix}=0,
+$$
+$$
+\frac{\partial \phi_2}{\partial x}g(x)=\begin{bmatrix}
+    0&1&-1
+\end{bmatrix}\begin{bmatrix}
+    0\\1\\1
+\end{bmatrix}=1-1=0
+$$
+
+
+
+Проверим обратимость преобразования $z=T(x)$:
+$$
+z=\begin{bmatrix}
+    x_1\\x_2-x_3\\x_3
+\end{bmatrix}\Rightarrow J_T(x)=\frac{\partial\left( \eta_1,\eta_2,\xi \right)}{\partial\left( x_1,x_2,x_3 \right)}
+=\begin{bmatrix}
+    1&0&0\\0&1&-1\\0&0&1
+\end{bmatrix},
+$$
+$$
+\det{J_T(x)}=1\neq0\,\forall x\in\mathbb{R}^3
+$$
+
+
+Преобразование $T(x)$ является гладко обратимым в $\mathbb{R}^3$,
+т.е. глобальным диффеоморфизмом.
+
+
+Область определения соответствующего преобразования:
+$$
+D_0=\left\{ x\in\mathbb{R}^3|\det{J_T(x)}\neq0 \right\}=\mathbb{R}^3
+$$
+
+
+Преобразование координат $x=T^{-1}(z)$:
+$$
+\begin{cases}
+    x_1=\eta_1,\\x_2=\eta_2+\xi,\\x_3=\xi
+\end{cases}
+$$
+
+
+Вычислим производные:
+$$
+\dot{\eta}_1=\dot{x}_1=-x_1+x_2-x_3=-\eta_1+\eta_2+\xi-\xi=-\eta_1+\eta_2,
+$$
+$$
+\dot{\eta}_2=\dot{x}_2-\dot{x}_3=-x_1x_3-x_2+u+x_1-u=-x_1x_3-x_2+x_1=-\eta_1\xi- \eta_2-\xi+\eta_1,
+$$
+$$
+\dot{\xi}=\dot{x}_3=-x_1+u=-\eta_1+u
+$$
+
+
+Система в нормальной (канонической) форме:
+$$
+\begin{cases}
+    \dot{\eta}_1=-\eta_1+\eta_2,\\
+    \dot{\eta}_2=-\eta_1\xi-\eta_2-\xi+\eta_1,\\
+    \dot{\xi}=-\eta_1+u,\\y=\xi
+\end{cases}
+$$
+
+
+Проверка равновесия в нормальной форме:
+$$
+\left( \eta_1,\eta_2,\xi \right)=\left( 0,0,0 \right),u=0\Rightarrow\dot{\eta}=0,\dot{\xi}=0
+$$
+
+
+% Каноническое представление цепи $\rho$ интеграторов (один интегратор при $\rho=1$):
+% $$
+% \left( A_c,B_c,C_c \right)=\left( 0,1,1 \right)
+% $$
+
+
+% Внешняя составляющая $\xi\in\mathbb{R}^{\rho=1}$, внутренняя
+% составляющая $\eta\in\mathbb{R}^{n-\rho=2}$.
+
+
+% Линеаризация внешней составляющей:
+% $$
+% u=\alpha(x)+\gamma(x)^{-1}v
+% $$
+% $$
+% \alpha(x)=-\frac{L_f^\rho h(x)}{L_gL_f^{\rho-1}h(x)}=x_1=\eta_1,
+% $$
+% $$
+% \gamma(x)=L_gL_f^{\rho-1}h(x)=1,
+% $$
+% $$
+% u=\eta_1+v
+% $$
+
+
+% Подстановка:
+% $$
+% \dot{\xi}=u-\eta_1=\eta_1-\eta_1+v=v
+% $$
+
+
+% Внешняя подсистема (по входу–выходу) становится линейной интегрирующей связью $\dot{y}=v$.
+
+
+Нулевая динамика:
+$$
+\dot{\eta}=f_0(\eta,\xi=0)%\Rightarrow \xi=y=0, v=0
+$$
+
+
+Подставим $\xi=0$ в $\dot{\eta}$:
+$$
+\begin{cases}
+    \dot{\eta}_1=-\eta_1+\eta_2,\\
+    \dot{\eta}_2=-\eta_2+\eta_1
+\end{cases}\Rightarrow\dot{\eta}=\begin{bmatrix}
+    -1&1\\1&-1
+\end{bmatrix}\eta
+$$
+
+
+Собственные числа:
+$$
+\det{\begin{vmatrix}
+    -1-\lambda&1\\1&-1-\lambda
+\end{vmatrix}}=\lambda\left( \lambda+2 \right)=0\Rightarrow\sigma=\left\{ 0,-2 \right\}
+$$
+
+
+Система неасимптотически устойчива.
+
+
+Система называется минимально-фазовой,
+если начало координат для уравнения нуль-динамики асимптотически устойчиво
+при $T(x)$ таком, что начало координат $\left( \eta=0,\xi=0 \right)$ является
+точкой равновесия.
+
+
+Следовательно, система не минимально-фазовая.
 
 
 \section{Задание 2}
