@@ -413,4 +413,264 @@ $$
         \dot{x}_3=x_1+x_1x_2-2x_3
     \end{cases}\label{syseq:2}
 \end{align}
+
+
+Нелинейная система:
+$$
+\dot{x}=f(x)+g(x)u,\ f(x)=\begin{bmatrix}
+    -x_1+x_2\\x_1-x_2-x_1x_3\\x_1+x_1x_2-2x_3
+\end{bmatrix},\ g(x)=\begin{bmatrix}
+    0\\1\\0
+\end{bmatrix}
+$$
+
+
+Управление влияет только на $\dot{x}_2$.
+
+
+Линеаризация обратной связью:
+$$
+u=\alpha(x)+\beta(x)v
+$$
+% Динамика системы с таким законом управления должна стать линейной.
+
+
+Компенсируем нелинейность $-x_1x_3$ в $\dot{x}_2$ с помощью $u$:
+$$
+\alpha(x)=x_1x_3\Rightarrow u=x_1x_3+\beta(x)v
+$$
+
+
+Тогда $\dot{x}_2$:
+$$
+\dot{x}_2=x_1-x_2-x_1x_3+x_1x_3+\beta(x)v=x_1-x_2+\beta(x)v
+$$
+
+
+Выберем линейный закон такой, чтобы $\left( x_1,x_2 \right)\to0$:
+$$
+v=-k_1x_1-k_2x_2,\ \beta(x)=1\Rightarrow u=x_1x_3-k_1x_1-k_2x_2
+$$
+
+
+Нелинейность $x_1x_2$ в $\dot{x}_3$
+косвенно компенсируется,
+т.к. $\left( x_1,x_2 \right)\to0\Rightarrow x_1x_2\to0$.
+
+
+Подставим $\beta(x)v$ в $\dot{x}_2$:
+$$
+\dot{x}_2=x_1-x_2-k_1x_1-k_2x_2=-\left( k_1-1 \right)x_1-\left( k_2+1 \right)x_2
+$$
+
+
+Система примет вид:
+$$
+\begin{cases}
+    \dot{x}_1=-x_1+x_2,\\
+        \dot{x}_2=-\left( k_1-1 \right)x_1-\left( k_2+1 \right)x_2,\\
+        \dot{x}_3=x_1+x_1x_2-2x_3
+\end{cases}
+$$
+
+
+Рассмотрим линейную подсистему по состояниям $\left( x_1,x_2 \right)$:
+$$
+\begin{cases}
+    \dot{x}_1=-x_1+x_2,\\
+        \dot{x}_2=-\left( k_1-1 \right)x_1-\left( k_2+1 \right)x_2
+\end{cases}
+$$
+
+
+Найдем матрицу $A$:
+$$
+A=\begin{bmatrix}
+    -1&1\\-\left( k_1-1 \right)&-\left( k_2+1 \right)
+\end{bmatrix}
+$$
+
+
+Чтобы матрица $A$ была Гурвицевой, должны выполняться условия:
+$$
+\begin{cases}
+    \operatorname{trace}{A}<0,\\\det{A}>0,\\\Re{\lambda_i}<0
+\end{cases}\Rightarrow\begin{cases}-k_2-2<0,\\ k_1+k_2>0\end{cases}
+\Rightarrow \begin{cases}
+    k_2>-2,\\ k_1>-k_2
+\end{cases}
+$$
+
+
+Тогда линейная подсистема будет экспоненциально устойчива:
+$$
+||\left( x_1(t),x_2(t) \right)||\leq Ce^{-\alpha t}||\left( x_1(0),x_2(0) \right)||,\ C>0,\ \alpha>0
+$$
+
+
+Рассмотрим $\dot{x}_3$:
+$$
+\dot{x}_3=-2x_3+x_1\left( x_2+1 \right)=-2x_3+f(t)
+$$
+
+
+Рассмотрим возмущение $f(t)$:
+$$
+f(t)=x_1(t)\left( x_2(t)+1 \right)
+$$
+
+
+Ее убывание:
+$$
+|x_1(t)|\leq C_1e^{-\alpha t},\ |x_2(t)|\leq C_2e^{-\alpha t},
+$$
+$$
+|f(t)|=|x_1(t)\left( x_2(t)+1 \right)|\leq C_1e^{-\alpha t}\left( C_2e^{-\alpha t}+1 \right)\leq \left( C_1 + C_1C_2 \right)e^{-\alpha t}= Ce^{-\alpha t}
+$$
+
+
+То есть:
+$$
+|f(t)|\leq Ce^{-\alpha t}
+$$
+
+
+Решение линейного уравнения с известным источником $f(t)$ в общем виде:
+$$
+\dot{x}(t)=\alpha x(t)+f(t),\ x_h(t)=e^{\alpha t}x(0),
+$$
+$$
+x(t)=e^{\alpha t}C(t),\ \dot{C}(t)=e^{-\alpha t}f(t)\Rightarrow C(t)=\int\limits_{0}^{t}e^{-\alpha s}f(s)\,ds +C_0,
+$$
+$$
+x(t)=e^{\alpha t}C_0+e^{\alpha t}\int\limits_{0}^{t}e^{-\alpha s}f(s)\,ds=e^{\alpha t}x(0)+\int\limits_{0}^{t}e^{\alpha \left( t-s \right)}f(s)\,ds,
+$$
+
+
+Решим $\dot{x}_3=-2x_3+f(t)$:
+$$
+x_3(t)=e^{-2 t}x(0)+\int\limits_{0}^{t}e^{-2\left( t-s \right)}f(s)\,ds
+$$
+
+
+Первый член стремится к нулю экспоненциально.
+
+
+Оценим интеграл при $|f(s)|\leq Ce^{-\alpha s}$:
+$$
+\Bigg|\int\limits_{0}^{t}e^{-2 \left( t-s \right)}f(s)\,ds\Bigg|\leq
+\int\limits_{0}^{t}e^{-2 \left( t-s \right)}Ce^{-\alpha s}\,ds=Ce^{-2t}\int\limits_{0}^{t}e^{\left(2-\alpha\right) s}\,ds,
+$$
+$$
+\int\limits_{0}^{t}e^{\left(2-\alpha\right) s}\,ds=\begin{cases}
+    \frac{1}{2-\alpha}\left( e^{\left( 2-\alpha \right)t} -1\right),&\alpha\neq2,\\
+    t,&\alpha=2
+\end{cases}
+$$
+
+
+В случае $\alpha\neq2$ для больших $t$ главное слагаемое: $e^{\left( 2-\alpha \right)t}$.
+
+
+Тогда интеграл можно оценить:
+$$
+e^{-2t}\int\limits_{0}^{t}e^{\left(2-\alpha\right) s}\,ds\sim e^{-2t}\cdot e^{\left(2-\alpha\right) t}=e^{-\alpha t}
+$$
+
+
+Следовательно, интеграл убывает экспоненциально с тем же показателем $\alpha$, что и $f(t)$.
+
+
+Таким образом, $x_3(t)$ и $\dot{x}_3(t)$ убывают экспоненциально.
+
+
+Подобранный закон управления обеспечивает глобальную стабилизацию начала координат данной системы.
+
+
+Промоделируем систему при $$k_2=-1,k_1=4,$$ $$x_0=\begin{bmatrix}
+    100\\ -70\\ 45
+\end{bmatrix}$$
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{sch.png}
+    \caption{Схема моделирования системы}
+    \label{fig:sch}
+\end{figure}
+
+
+Графики вектора состояния системы и управления: % 1001,205,953,498
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{x.png}
+    \caption{Вектор состояния объекта управления}
+    \label{fig:x}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{u.png}
+    \caption{Управление $u=x_1x_3-k_1x_1-k_2x_2$}
+    \label{fig:u}
+\end{figure}
+
+
+\section{Вывод}
+В ходе выполнения работы
+было выяснено, что первая
+нелинейная система
+является линеаризуемой по входу-выходу.
+Она была преобразована к канонической форме,
+область определения определена как $\mathbb{R}^3$.
+Система не является минимально фазовой.
+
+
+Для второй нелинейной системы удалось
+найти закон управления с обратной связью по состоянию,
+обеспечивающий глобальную стабилизацию начала координат.
+Использовался метод линеаризации обратной связью.
+
+
+% Докажем глобальную стабилизацию начала координат.
+
+
+% Функция Ляпунова:
+% $$
+% V=\frac{1}{2}\left( x_1^2+x_2^2+x_3^2 \right)
+% $$
+
+
+% Ее производная:
+% $$
+% \dot{V}=x_1\dot{x}_1+x_2\dot{x}_2+x_3\dot{x}_3=
+% -x_1^2-\left( k_2+1 \right)x_2^2-2x_3^2+x_1x_2\left( 2-k_1+x_3 \right)+x_1x_3
+% $$
+
+
+% При $k_2>-2$ член $-\left( k_2+1 \right)$ всегда неположителен.
+
+
+% Рассмотрим члены, которые могут быть неотрицательны.
+
+
+% По неравенству типа Коши-Буняковского:
+% $$
+% |x_1x_3|\leq\frac{1}{2}\left( x_1^2+x_3^2 \right),
+% $$
+% $$
+% |x_1x_2\left( 2-k_1+x_3 \right)|\leq\frac{1}{2}|2-k_1+x_3|\left( x_1^2+x_2^2 \right)
+% $$
+
+
+% Неравенство сверху:
+% $$
+% \dot{V}\leq -x_1^2-\left( k_2+1 \right)x_2^2-2x_3^2+\frac{1}{2}|2-k_1+x_3|\left( x_1^2+x_2^2 \right)+\frac{1}{2}\left( x_1^2+x_3^2 \right),
+% $$
+% $$
+% \dot{V}\leq -0.5x_1^2\left(1-|2-k_1+x_3| \right)-x_2^2\left( 1+k_2-0.5\cdot|2-k_1+x_3| \right)-1.5x_3^2
+% $$
+
+
+% Чтобы $\dot{V}<0\,\forall x\neq0$ необходимо, чтобы все скобки были положительными:
+% $$
+% 1-|2-k_1+x_3|>0\Rightarrow|2-k_1+x_3|<1
+% $$
 \end{document}
