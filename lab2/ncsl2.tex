@@ -1,0 +1,276 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage{tempora}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bfseries\centering\MakeUppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]{\bfseries}{\thesubsubsection.}{1em}{}
+
+\renewcommand{\contentsname}{\hfill \textbf{СОДЕРЖАНИЕ} \hfill\null}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{cmap}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.7}
+
+\lstdefinestyle{code}{
+    language=Python, % change if needed
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\small\color{LightGray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    rulecolor=\color{LightGray},
+    linewidth=\linewidth,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{violet},
+    escapeinside={\%*}{*)},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt
+}
+\lstset{style=code}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={ncs1},
+    pdfauthor={Rumyantsev Alexey},
+    pdfsubject={control},
+    pdfkeywords={LaTeX, PDF},
+    pdfpagemode=FullScreen,
+}
+
+\graphicspath{{src/images/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+        \vspace*{2.5mm}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО»\\
+        \vspace*{2.5mm}
+        \textbf{ФАКУЛЬТЕТ СИСТЕМ УПРАВЛЕНИЯ И РОБОТОТЕХНИКИ}
+        \vfill
+
+        {\large ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №2}\\
+        {\large по дисциплине}\\
+        {\large\bfseries «НЕЛИНЕЙНЫЕ СИСТЕМЫ УПРАВЛЕНИЯ»}\\
+        {\large на тему}\\
+        {\large\bfseries «ФУНКЦИЯ ЛЯПУНОВА, УСТОЙЧИВОСТЬ И РЕГУЛЯТОРЫ»}\\
+        \vfill
+
+        \begin{flushright}
+            Выполнил: студент гр. R3441\\
+            Румянцев А. А.\medskip\\
+
+            Проверил: преподаватель\\
+            Зименко К. А.
+        \end{flushright}
+
+        \vfill
+
+        Санкт-Петербург\\
+        2025
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Задание 1}
+\subsection{Условие}
+Для каждой из данных систем используйте кандидат
+квадратичной функции Ляпунова, чтобы показать, что начало
+координат асимптотически устойчиво.
+
+
+\subsection{Выполнение}
+\subsubsection{Первая система}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-x_1+x_1x_2,\\
+        \dot{x}_2=-2x_2
+    \end{cases}
+\end{align}\label{syseq:1}
+
+
+Функция Ляпунова в квадратичной форме:
+$$
+V(x)=x^TPx,\text{ пусть } P=\begin{bmatrix}
+    0.5&0\\0&0.5
+\end{bmatrix}\Rightarrow V(x)=\begin{bmatrix}
+    x_1&x_2
+\end{bmatrix}\begin{bmatrix}
+    0.5&0\\0&0.5
+\end{bmatrix}\begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix},
+$$
+$$
+V=\frac{1}{2}\left( x_1^2+x_2^2 \right),\ V\left( x_1,x_2 \right)>0\, \forall \left( x_1,x_2 \right)\neq\left( 0,0 \right),\ V\left( 0,0 \right)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x_1\dot{x}_1+x_2\dot{x}_2=x_1\left( -x_1+x_1x_2 \right)+x_2\left( -2x_2 \right)=-x_1^2+x_1^2x_2-2x_2^2,
+$$
+$$
+\dot{V}=-x_1^2\left( 1-x_2 \right)-2x_2^2
+$$
+
+
+Скобка должна быть неотрицательной:
+$$
+1-x_2\geq0\Rightarrow x_2\leq1
+$$
+
+
+Тогда:
+$$
+\forall\left( x_1,x_2 \right)\neq\left( 0,0 \right),x_2\leq1:\dot{V}<0
+$$
+
+
+В окрестности нуля $\dot{V}<0$, следовательно начало координат локально асимптотически устойчиво.
+
+
+Глобальная асимптотическая устойчивость достигалась бы в случае,
+когда $\forall \left( x_1,x_2 \right)\in\mathbb{R}^2\,\backslash\left\{ 0 \right\}:\dot{V}<0$.
+
+
+\subsubsection{Вторая система}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-x_2-x_1\left( 1-x_1^2-x_2^2 \right),\\
+        \dot{x}_2=x_1-x_2\left( 1-x_1^2-x_2^2 \right)
+    \end{cases}\label{syseq:2}
+\end{align}
+
+
+Функция Ляпунова:
+$$
+V=\frac{1}{2}\left( x_1^2+x_2^2 \right),\ V\left( x_1,x_2 \right)>0\, \forall \left( x_1,x_2 \right)\neq\left( 0,0 \right),\ V\left( 0,0 \right)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x_1\dot{x}_1+x_2\dot{x}_2=x_1\left( -x_2-x_1\left( 1-x_1^2-x_2^2 \right) \right)+x_2\left( x_1-x_2\left( 1-x_1^2-x_2^2 \right) \right),
+$$
+$$
+\dot{V}=x_1^4+x_2^4+2x_1^2x_2^2-x_1^2-x_2^2=\left( x_1^2+x_2^2 \right)\left( x_1^2+x_2^2 -1\right)
+$$
+
+
+Сделаем замену $r^2=x_1^2+x_2^2$:
+$$
+\dot{V}=r^2\left( r^2-1 \right)
+$$
+
+
+Тогда:
+\begin{align*}
+    &r^2-1<0\Rightarrow r\in\left( -1,1 \right):\dot{V}<0,\\
+    &r^2-1=0\Rightarrow r=\pm 1:\dot{V}=0,\\
+    &r^2-1>0\Rightarrow r\in\left( -\infty,-1 \right)\vee \left( 1,\infty \right):\dot{V}>0
+\end{align*}
+
+
+Внутри единичной окружности $r^2=x_1^2+x_2^2<1$ начало координат
+локально асимптотически устойчиво.
+
+
+Локальная асимптотическая устойчивость исключает глобальную.
+
+
+\subsubsection{Третья система}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=x_2\left( 1-x_1^2 \right)-2x_1,\\
+        \dot{x}_2=-\left( x_1+x_2 \right)\left( 1-x_1^2 \right)
+    \end{cases}\label{syseq:3}
+\end{align}
+
+
+Функция Ляпунова:
+$$
+V=\frac{1}{2}\left( x_1^2+x_2^2 \right),\ V\left( x_1,x_2 \right)>0\, \forall \left( x_1,x_2 \right)\neq\left( 0,0 \right),\ V\left( 0,0 \right)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x_1\dot{x}_1+x_2\dot{x}_2=x_1\left( x_2\left( 1-x_1^2 \right)-2x_1 \right)+x_2\left( -\left( x_1+x_2 \right)\left( 1-x_1^2 \right) \right),
+$$
+$$
+\dot{V}=x_1x_2\left( 1-x_1^2 \right)-2x_1^2-x_1x_2\left( 1-x_1^2 \right)-x_2^2\left( 1-x_1^2 \right)=-2x_1^2-x_2^2\left( 1-x_1^2 \right)
+$$
+
+
+Скобка должна быть неотрицательной:
+$$
+1-x_1^2\geq0\Rightarrow|x_1|\leq1
+$$
+
+
+Тогда:
+$$
+\forall\left( x_1,x_2 \right)\neq\left( 0,0 \right),|x_1|\leq1:\dot{V}<0
+$$
+
+
+В окрестности нуля $\dot{V}<0$, следовательно начало координат
+локально асимптотически устойчиво.
+
+
+\subsubsection{Четвертая система}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-3x_1-x_2,\\
+        \dot{x}_2=2x_1-x_2^3
+    \end{cases}\label{syseq:4}
+\end{align}
+\end{document}
