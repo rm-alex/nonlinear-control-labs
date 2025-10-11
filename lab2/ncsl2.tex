@@ -273,4 +273,104 @@ $$
         \dot{x}_2=2x_1-x_2^3
     \end{cases}\label{syseq:4}
 \end{align}
+
+
+Функция Ляпунова:
+$$
+V=\frac{1}{2}\left( x_1^2+x_2^2 \right),\ V\left( x_1,x_2 \right)>0\, \forall \left( x_1,x_2 \right)\neq\left( 0,0 \right),\ V\left( 0,0 \right)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x_1\dot{x}_1+x_2\dot{x}_2=x_1\left( -3x_1-x_2 \right)+x_2\left( 2x_1-x_2^3 \right)=-3x_1^2+x_1x_2-x_2^4
+$$
+
+
+Найдем корни $\dot{V}=0$:
+$$
+-3x_1^2+x_1x_2-x_2^4=0\Rightarrow\left( 0,0 \right),\left( -\frac{1}{16},-\frac{1}{4} \right),\left( \frac{1}{16},\frac{1}{4} \right)
+$$
+
+
+Найдем точки равновесия системы (\ref{syseq:4}):
+$$
+\begin{cases}
+    -3x_1-x_2=0,\\
+    2x_1-x_2^3=0
+\end{cases}\Rightarrow\left( 0,0 \right)
+$$
+
+
+Точки $\left( -\frac{1}{16},-\frac{1}{4} \right),\left( \frac{1}{16},\frac{1}{4} \right)$ не являются
+равновесиями системы, из них траектории уходят. Следовательно, $\dot{V}=0$ в этих
+точках не принадлежит инвариантному множеству.
+
+
+Таким образом, наибольшее инвариантное множество, содержащееся в $\dot{V}=0$ -- это начало координат.
+
+
+По теореме ЛаСалля начало координат асимптотически устойчиво.
+
+
+По неравенству Коши-Буняковского:
+$$
+x_1x_2\leq\frac{1}{2}\left( x_1^2+x_2^2 \right)
+$$
+
+
+Тогда:
+$$
+\dot{V}\leq-3x_1^2+\frac{1}{2}x_1^2+\frac{1}{2}x_2^2-x_2^4=-\frac{5}{2}x_1^2+x_2^2\left( \frac{1}{2}-x_2^2 \right)
+$$
+
+
+Скобка должна быть отрицательной:
+$$
+\frac{1}{2}-x_2^2\leq0\Rightarrow x \in \left(-\infty,\,-\frac{\sqrt{2}}{2}\right) \,\vee\, \left(\frac{\sqrt{2}}{2},\,\infty\right)
+$$
+
+
+Таким образом, начало координат не может быть глобально
+асимптотически устойчиво -- оно локально асимптотически устойчиво.
+
+
+\subsubsection{Пятая система}
+Рассмотрим систему:
+\begin{align}
+    \dot{x}=-\arctan{\left( x \right)}\label{syseq:5}
+\end{align}
+
+
+Функция Ляпунова:
+$$
+V(x)=\frac{1}{2}x^2,\ V(x)>0\,\forall x\neq0,\ V(0)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x\dot{x}=x\left( -\arctan{\left( x \right)} \right)=-x\arctan{\left( x \right)}
+$$
+
+
+Для всех $x\in\mathbb{R}$:
+$$
+\arctan{\left( x \right)}\in\left( -\frac{\pi}{2},\frac{\pi}{2} \right)
+$$
+
+
+и $\arctan{\left( x \right)}$ -- неубывающая нечетная функция. Она имеет тот же знак, что $x$.
+
+
+Тогда:
+\begin{align*}
+    &x>0\Rightarrow \arctan{\left( x \right)}>0\Rightarrow \dot{V}=-x\arctan{\left( x \right)}<0\,\forall x\neq0,\\
+    &x=0\Rightarrow \arctan{\left( x \right)}=0\Rightarrow\dot{V}=0,\\
+    &x<0\Rightarrow \arctan{\left( x \right)}<0\Rightarrow \dot{V}=-x\arctan{\left( x \right)}<0\,\forall x\neq0
+\end{align*}
+
+
+Таким образом, для всех $x\neq0:\dot{V}<0$, следовательно
+начало координат глобально асимптотически устойчиво.
 \end{document}
