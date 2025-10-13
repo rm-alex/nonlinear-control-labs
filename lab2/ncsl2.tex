@@ -453,8 +453,38 @@ $$
 $$
 
 
+Оно мало в окрестности нуля.
+
+
+Для $x\neq0$ перепишем:
+$$
+\dot{x}=x^p\left( \alpha+\frac{h(x)}{x^p} \right)
+$$
+
+
 Из условия $|h(x)|\leq k|x|^{p+1}$ следует:
 $$
 \bigg|\frac{h(x)}{x^p}\bigg|\leq k|x|
 $$
+
+
+Возьмем $\varepsilon>0$ такой, что:
+$$
+k\varepsilon<\frac{|\alpha|}{2}=-\frac{\alpha}{2},
+$$
+тогда для всех $|x|<\varepsilon$:
+$$
+\alpha+\frac{h(x)}{x^p}\leq \alpha+k|x|\leq\frac{\alpha}{2}<0
+$$
+
+
+Следовательно, для $|x|<\varepsilon$:
+$$
+\dot{x}\cdot\operatorname{sign}\left( x \right)=|x|^p\left( \alpha+\frac{h(x)}{x^p} \right)\leq\frac{\alpha}{2}|x|^p<0,
+$$
+то есть $|x|$ монотонно убывает вдоль траекторий,
+пока решение остаётся в окрестности нуля.
+
+
+Таким образом, $x(t)\xrightarrow[t\to\infty]{}0$ при малых $x$, нечетном $p$ и $\alpha<0$ -- начало координат локально асимптотически устойчиво.
 \end{document}
