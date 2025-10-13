@@ -487,4 +487,177 @@ $$
 
 
 Таким образом, $x(t)\xrightarrow[t\to\infty]{}0$ при малых $x$, нечетном $p$ и $\alpha<0$ -- начало координат локально асимптотически устойчиво.
+
+
+\section{Задание 3}
+\subsection{Условие}
+На основе применения LMI построить линейный регулятор,
+стабилизирующий систему экспоненциально со степенью 2:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=x_2,\\
+        \dot{x}_2=2x_1+u
+    \end{cases}\label{syseq:7}
+\end{align}
+
+
+\subsection{Выполнение}
+Приведем систему к виду:
+$$
+\dot{x}=Ax+Bu,\ u=Kx
+$$
+
+
+Матрицы $A,B$:
+$$
+A=\begin{bmatrix}
+    0&1\\2&0
+\end{bmatrix},\ B=\begin{bmatrix}
+    0\\1
+\end{bmatrix}
+$$
+
+
+Собственные числа матрицы $A$:
+$$
+\sigma\left( A \right)=\left\{ 1.41,-1.41 \right\}
+$$
+
+
+Проверим управляемость:
+$$
+A=PJP^{-1},B_J=P^{-1}B\Rightarrow J=\begin{bmatrix}
+    1.41       &0\\
+    0   &-1.41
+\end{bmatrix},\ B_J=\begin{bmatrix}
+    0.5\\0.5
+\end{bmatrix}
+$$
+
+
+Система полностью управляема -- можно задать регулятору любую степень устойчивости.
+
+
+Синтезируем LMI со степенью устойчивости $\alpha=2$ без ограничения на управление
+при помощи матричного неравенства типа Ляпунова:
+$$
+PA^T+AP+2\alpha P+Y^TB^T+BY\preceq 0,\ K=YP^{-1}
+$$
+
+
+Получим:
+$$
+K=\begin{bmatrix}
+    -39.02  &-10.81
+\end{bmatrix}
+$$
+
+
+Проверим собственные числа замкнутой системы $A+BK$:
+$$
+\sigma\left( A+BK \right)=\left\{ -5.4 \pm 2.8i \right\}
+$$
+
+
+Замкнутая система асимптотически устойчива, и, убывает быстрее, чем
+требуемая скорость $e^{-2t}$ (см. действительную часть собственных чисел).
+
+
+Схема моделирования при измеримом $x$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{sch1.png}
+    \caption{Схема моделирования системы}
+    \label{fig:sch1}
+\end{figure}
+
+
+Графики вектора состояния системы и управления: % 1001,205,953,498
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{1.png}
+    \caption{Вектор состояния объекта управления}
+    \label{fig:1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{2.png}
+    \caption{Управление}
+    \label{fig:2}
+\end{figure}
+
+
+Регулятор работает корректно.
+
+
+\section{Задание 4}
+\subsection{Условие}
+Найти ограничивающее условие на параметр $\gamma$, при котором
+система является экспоненциально устойчивой со степенью 1. Закон
+управления взять из предыдущего задания.
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=x_2+\gamma\sin{\left( x_2 \right)},\\
+        \dot{x}_2=2x_1+u,
+    \end{cases}\label{syseq:8}
+\end{align}
+$$
+u=Kx,\ K=\begin{bmatrix}
+    -39.02  &-10.81
+\end{bmatrix}
+$$
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Задание 5}
+\subsection{Условие}
+Рассмотрим систему:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=x_2-0.5x_1^3,\\
+        \dot{x}_2=u,\\
+        u=Kx
+    \end{cases}\label{syseq:9}
+\end{align}
+
+
+Весь вектор состояния $x=\begin{bmatrix}
+    x_1&x_2
+\end{bmatrix}^T$ измерим.
+
+
+\begin{enumerate}
+    \item Синтезируйте линейный регулятор с обратной связью по
+    состоянию, чтобы глобально стабилизировать начало координат.
+    \item Исследуйте устойчивость по входу к состоянию при наличии шумов измерений.
+    \item Исследуйте устойчивость по входу к состоянию при наличии аддитивных возмущений.
+\end{enumerate}
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Задание 6}
+\subsection{Условие}
+Исследуйте устойчивость по входу к состоянию системы по
+отношению к возмущению $d$:
+\begin{align}
+    \begin{cases}
+        \dot{x}_1=-2x_1+x_2,\\
+        \dot{x}_2=-x_1-\sigma\left( x_1 \right)-x_2+d,
+    \end{cases}\label{syseq:10}
+\end{align}
+где $\sigma$ -- локально липшицева, $\sigma\left( 0 \right)=0,\, y\sigma\left( y \right)\geq0$.
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Вывод}
+...
 \end{document}
