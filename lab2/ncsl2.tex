@@ -464,7 +464,7 @@ $$
 
 Из условия $|h(x)|\leq k|x|^{p+1}$ следует:
 $$
-\bigg|\frac{h(x)}{x^p}\bigg|\leq k|x|
+\bigg|\frac{h(x)}{x^p}\bigg|\leq k|x|,\ k>0
 $$
 
 
@@ -478,15 +478,24 @@ $$
 $$
 
 
+Учтем для $|x|$:
+$$
+\frac{d|x|}{dx}=\dot{x}\operatorname{sign}\left( x \right),\ x^p\operatorname{sign}\left( x \right)=|x|^p,\ p=2n+1,\ n\in\mathbb{N}_0,
+$$
+$$
+\dot{x}\operatorname{sign}\left( x \right)=\left( \alpha x^p +h(x) \right)\operatorname{sign}\left( x \right)=x^p\operatorname{sign}\left( x \right)\left( \alpha+\frac{h(x)}{x^p} \right)
+$$
+
+
 Следовательно, для $|x|<\varepsilon$:
 $$
-\dot{x}\cdot\operatorname{sign}\left( x \right)=|x|^p\left( \alpha+\frac{h(x)}{x^p} \right)\leq\frac{\alpha}{2}|x|^p<0,
+\dot{x}\operatorname{sign}\left( x \right)=|x|^p\left( \alpha+\frac{h(x)}{x^p} \right)\leq\frac{\alpha}{2}|x|^p<0,
 $$
 то есть $|x|$ монотонно убывает вдоль траекторий,
 пока решение остаётся в окрестности нуля.
 
 
-Таким образом, $x(t)\xrightarrow[t\to\infty]{}0$ при малых $x$, нечетном $p$ и $\alpha<0$ -- начало координат локально асимптотически устойчиво.
+Таким образом, $|x(t)|\xrightarrow[t\to\infty]{}0$ при малых $x$, $p=2n+1, n\in\mathbb{N}_0$ и $\alpha<0$ -- начало координат локально асимптотически устойчиво.
 
 
 \section{Задание 3}
@@ -563,31 +572,31 @@ $$
 требуемая скорость $e^{-2t}$ (см. действительную часть собственных чисел).
 
 
-Схема моделирования при измеримом $x$:
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.6]{sch1.png}
-    \caption{Схема моделирования системы}
-    \label{fig:sch1}
-\end{figure}
+% Схема моделирования при измеримом $x$:
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.6]{sch1.png}
+%     \caption{Схема моделирования системы}
+%     \label{fig:sch1}
+% \end{figure}
 
 
-Графики вектора состояния системы и управления: % 1001,205,953,498
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{1.png}
-    \caption{Вектор состояния объекта управления}
-    \label{fig:1}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{2.png}
-    \caption{Управление}
-    \label{fig:2}
-\end{figure}
+% Графики вектора состояния системы и управления: % 1001,205,953,498
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.5]{1.png}
+%     \caption{Вектор состояния объекта управления}
+%     \label{fig:1}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.5]{2.png}
+%     \caption{Управление}
+%     \label{fig:2}
+% \end{figure}
 
 
-Регулятор работает корректно.
+% Регулятор работает корректно.
 
 
 \section{Задание 4}
