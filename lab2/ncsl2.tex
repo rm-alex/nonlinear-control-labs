@@ -470,7 +470,7 @@ $$
 
 Возьмем $\varepsilon>0$ такой, что:
 $$
-k\varepsilon<\frac{|\alpha|}{2}=-\frac{\alpha}{2},
+k\varepsilon<\frac{|\alpha|}{2},
 $$
 тогда для всех $|x|<\varepsilon$:
 $$
@@ -657,6 +657,57 @@ A_\gamma=\begin{bmatrix}
     0&1+\gamma\\-37.02&-10.81
 \end{bmatrix}
 $$
+
+
+Экспоненциальная устойчивость степени 1 требует:
+$$
+\operatorname{Re}\left( \lambda_{A_\gamma\, i} \right)\leq-1
+$$
+
+
+Характеристический полином:
+$$
+\det{\left(\lambda I-A_\gamma\right)}=\lambda^2+10.81\lambda+37.02\left( \gamma+1 \right)=0
+$$
+
+
+Собственные числа:
+$$
+\lambda_{1,2}=\frac{-10.81\pm\sqrt{10.81^2-4\cdot37.02\left( \gamma+1 \right)}}{2}
+$$
+
+
+Рассмотрим дискриминант:
+$$
+D=10.81^2-4\cdot37.02\left( \gamma+1 \right)
+$$
+
+
+Если $D<0$, то корни комплексно-сопряженные с отрицательной действительной частью $-10.81/2<-1$:
+$$
+10.81^2-4\cdot37.02\left( \gamma+1 \right)<0\Rightarrow \gamma>\frac{10.81^2}{4\cdot37.02}-1\Rightarrow\gamma>-0.21
+$$
+
+
+Если $D\geq0$, то корни действительные и должны удовлетворять условию:
+$$
+\lambda_i=\frac{-10.81\pm\sqrt{10.81^2-4\cdot37.02\left( \gamma+1 \right)}}{2}\leq-1,
+$$
+
+
+Так как $\lambda_{1+}\geq\lambda_{2-}$, то достаточно проверить $\lambda_{1+}$:
+$$
+\sqrt{10.81^2-4\cdot37.02\left( \gamma+1 \right)}\leq8.81\Rightarrow\gamma\geq\dfrac{8.81^2-10.81^2}{-4\cdot37.02}-1\Rightarrow\gamma\geq-0.74
+$$
+
+
+Таким образом, экспоненциальная устойчивость степени 1 достигается при:
+$$
+\gamma\geq-0.74
+$$
+
+
+При $\gamma>-0.21$ собственные числа будут комплексными.
 
 
 \section{Задание 5}
