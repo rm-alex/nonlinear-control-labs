@@ -609,7 +609,54 @@ $$
 
 
 \subsection{Выполнение}
-...
+Подставим закон управления:
+$$
+\begin{cases}
+    \dot{x}_1=x_2+\gamma\sin{\left( x_2 \right)},\\
+    \dot{x}_2=2x_1+Kx=2x_1-39.02x_1-10.81x_2
+\end{cases}
+$$
+
+
+Получим систему:
+$$
+\begin{cases}
+    \dot{x}_1=x_2+\gamma\sin{\left( x_2 \right)},\\
+    \dot{x}_2=-37.02x_1-10.81x_2
+\end{cases}
+$$
+
+
+Замкнутая система будет иметь вид:
+$$
+\dot{x}=\left( A+BK \right)x+\gamma f(x),
+$$
+$$
+A+BK=\begin{bmatrix}
+    0&1\\-37.02&-10.81
+\end{bmatrix},\ f(x)=\begin{bmatrix}
+    \sin{\left( x_2 \right)}\\0
+\end{bmatrix}
+$$
+
+
+Линеаризуем систему. При малых $x_2$:
+$$
+\sin{\left( x_2 \right)}\approx x_2
+$$
+
+
+Тогда система примет вид:
+$$
+\dot{x}=\left[ \left( A+BK \right)+\gamma\begin{bmatrix}
+    0&1\\0&0
+\end{bmatrix} \right]x=A_\gamma x,
+$$
+$$
+A_\gamma=\begin{bmatrix}
+    0&1+\gamma\\-37.02&-10.81
+\end{bmatrix}
+$$
 
 
 \section{Задание 5}
