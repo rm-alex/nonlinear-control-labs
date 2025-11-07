@@ -132,7 +132,77 @@
 
 
 \subsection{Выполнение}
-...
+Компонента $x_2$
+является виртуальным
+управлением подсистемы $\dot{x}_1$:
+$$
+\dot{x}_1=f(x_1)+\varphi(x_1),\ f(x_1)=\sin{\left( x_1 \right)}+x_1^2 ,\ \varphi(x_1)=x_2
+$$
+
+
+Функция Ляпунова:
+$$
+V_1(x_1)=0.5x_1^2,\ V_1(x_1)>0\,\forall x_1\neq0, \ V_1(0)=0
+$$
+
+
+Ее производная:
+$$
+\dot{V}_1(x_1)=x_1\dot{x}_1=x_1\left( x_2+\sin{\left( x_1 \right)+x_1^2} \right)=x_1x_2+x_1\sin{\left( x_1 \right)}+x_1^3
+$$
+
+
+Необходимо, чтобы $\dot{V}_1(x_1)<0\,\forall x_1\neq0$.
+В таком случае нужно компенсировать
+неопределенные по знаку слагаемые $x_1\sin{\left( x_1 \right)},x_1^3$
+и сделать слагаемое $x_1x_2$ отрицательным четной степени
+через $x_2=\varphi(x_1)$:
+$$
+\varphi(x_1)=-\sin{\left( x_1 \right)}-x_1^2-k_1x_1,\ k_1>0\Rightarrow \dot{x}_1=-k_1x_1
+$$
+
+
+Тогда, производная функции Ляпунова:
+$$
+\dot{V}_1(x_1)=-k_1x_1^2<0\,\forall x_1\neq0
+$$
+
+
+Сделаем замену, чтобы определить ошибку между реальным
+$x_2$ и виртуальным управлением:
+$$
+z=x_2-\varphi(x_1)=x_2+\sin{\left( x_1 \right)}+x_1^2+k_1x_1
+$$
+
+
+Тогда:
+$$
+x_2=z-\sin{\left( x_1 \right)}-x_1^2-k_1x_1
+$$
+
+
+Подставим $x_2$ в подсистему $\dot{x}_1$:
+$$
+\dot{x}_1=x_2+\sin{\left( x_1 \right)}+x_1^2=z-k_1x_1
+$$
+
+
+Найдем $\dot{z}$:
+$$
+\dot{z}=\dot{x}_2-\dot{\varphi}_t(x_1)
+$$
+
+
+Найдем $\dot{\varphi}_t(x_1)$:
+$$
+\dot{\varphi}_t(x_1)=\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\dot{x}_1=\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\left( z-k_1x_1 \right)
+$$
+
+
+Тогда, $\dot{z}$:
+$$
+\dot{z}=x_1^2+\left( 2+\sin{\left( x_1 \right)} \right)u-\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\left( z-k_1x_1 \right)
+$$
 
 
 \section{Задание 2}
