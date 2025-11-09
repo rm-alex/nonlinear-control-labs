@@ -164,7 +164,7 @@ $$
 
 Тогда, производная функции Ляпунова:
 $$
-\dot{V}_1(x_1)=-k_1x_1^2<0\,\forall x_1\neq0
+\dot{V}_1(x_1)=-k_1x_1^2<0\,\forall x_1\neq0, k_1>0
 $$
 
 
@@ -275,7 +275,115 @@ $$
 
 
 \subsection{Выполнение}
-...
+Компонента $x_2$ -- виртуальное управление
+подсистемы $\dot{x}_1$:
+$$
+\dot{x}_1=f(x_1)+\varphi(x_1),\ f(x_1)=-x_1^3,\ \varphi(x_1)=x_2
+$$
+
+
+Функция Ляпунова и ее производная:
+$$
+V_1(x_1)=0.5x_1^2,\ \dot{V}_1(x_1)=x_1\left( x_2-x_1^3 \right)=x_1x_2-x_1^4
+$$
+
+
+Чтобы $\dot{V}_1\leq0$, нужно сделать
+слагаемое $x_1x_2$ отрицательно определенным
+через $\varphi(x_1)=x_2$:
+$$
+\varphi(x_1)=-k_1x_1,\ k_1>0
+$$
+
+
+Тогда:
+$$
+\dot{V}_1(x_1)=x_1\left( -k_1x_1-x_1^3 \right)=-k_1x_1^2-x_1^4<0\,\forall x_1\neq0,k_1>0
+$$
+
+
+Замена:
+$$
+z=x_2-\varphi(x_1)=x_2+k_1x_1
+$$
+
+
+Тогда:
+$$
+x_2=z-k_1x_1
+$$
+
+
+Подставим $x_2$ в подсистему $\dot{x}_1$:
+$$
+\dot{x}_1=x_2-x_1^3=z-k_1x_1-x_1^3
+$$
+
+
+Найдем $\dot{z}$:
+$$
+\dot{z}=\dot{x}_2-\dot{\varphi}_t(x_1)
+$$
+
+
+Найдем $\dot{\varphi}_t(x_1)$:
+$$
+\dot{\varphi}_t(x_1)=-k_1\dot{x}_1=-k_1\left( z-k_1x_1-x_1^3 \right)
+$$
+
+
+Тогда:
+$$
+\dot{z}=x_1+u+k_1\left( z-k_1x_1-x_1^3 \right)
+$$
+
+
+Полная функция Ляпунова и ее производная:
+$$
+V=V_1+0.5z^2,\ V_1=0.5x_1^2,
+$$
+$$
+\dot{V}=x_1\left( z-k_1x_1-x_1^3 \right)+z\left( x_1+u +k_1\left( z-k_1x_1-x_1^3 \right) \right),
+$$
+$$
+\dot{V}=2zx_1-k_1x_1^2-x_1^4+zu+z^2k_1-zk_1^2x_1-zk_1x_1^3
+$$
+
+
+Закон управления:
+$$
+u=-2x_1-k_1z+k_1^2x_1+k_1x_1^3-k_2z
+$$
+
+
+Тогда:
+$$
+\dot{V}=-k_1x_1^2-x_1^4-k_2z^2<0\,\forall(x_1,z)\neq(0,0),k_1,k_2>0
+$$
+
+
+Начало координат глобально асимптотически устойчиво.
+
+
+Итоговый закон управления:
+$$
+u=-2x_1-k_1\left( x_2+k_1x_1 \right)+k_1^2x_1+k_1x_1^3-k_2\left( x_2+k_1x_1 \right),
+$$
+$$
+u=-2x_1-k_1x_2+k_1x_1^3-k_2x_2-k_2k_1x_1
+$$
+
+
+Моделирование системы при $k_1=2,k_2=3,x_0=(1,-0.5)$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{2xu.png}
+    \caption{Графики $x_i(t),u(t)$}
+    \label{fig:2xu}
+\end{figure}
+
+
+Вектор состояния и управление стремятся к нулю с течением времени.
 
 
 \section{Задание 3}
@@ -297,7 +405,184 @@ $$
 
 
 \subsection{Выполнение}
-...
+Система четвёртого порядка в строгой обратносвязной форме:
+\begin{align*}
+    &\dot{x}_1=f_1(x_1)+g_1x_2,& \ f_1(x_1)=\cos{\left( x_1 \right)},g_1=-1,\\
+    &\dot{x}_2=f_2(x_1)+g_2x_3,& \ f_2(x_1)=x_1,g_2=1,\\
+    &\dot{x}_3=f_3(x_1,x_3)+g_3(x_3)x_4,&\ f_3(x_1,x_3)=x_1x_3,g_3(x_3)=2-\sin{\left( x_3 \right)},\\
+    &\dot{x}_4=f_4(x_2,x_3)+g_4u&\ f_4(x_2,x_3)=x_2x_3,g_4=2
+\end{align*}
+
+
+Так как $g_3(x_3)=2-\sin{\left( x_3 \right)}\geq1>0,g_4=2>0$,
+то управление эффективно.
+
+
+Сделаем рекурсивный бэкстеппинг.
+
+
+Рассмотрим подсистему:
+$$
+\dot{x}_1=\cos{\left( x_1 \right)}-x_2
+$$
+
+
+$x_2$ -- виртуальное управление $\dot{x}_1$.
+
+
+Функция Ляпунова и ее производная:
+$$
+V_1(x_1)=0.5x_1^2,\ \dot{V}_1(x_1)=x_1\left( \cos{\left( x_1 \right)}-x_2 \right)=x_1\cos{\left( x_1 \right)}-x_1x_2
+$$
+
+
+Виртуальное управление:
+$$
+\varphi_1(x_1)=\cos{\left( x_1 \right)}+k_1x_1,\ k_1>0
+$$
+
+
+Тогда, при $x_2=\varphi_1(x_1)$:
+$$
+\dot{x}_1=-k_1x_1\Rightarrow \dot{V}_1(x_1)=-k_1x_1^2<0\,\forall x_1\neq0,k_1>0
+$$
+
+
+Ошибка отслеживания:
+$$
+z_1=x_2-\varphi_1(x_1)=x_2-\cos{\left( x_1 \right)}-k_1x_1
+$$
+
+
+Тогда:
+$$
+x_2=z_1+\cos{\left( x_1 \right)}+k_1x_1,
+$$
+$$
+\dot{x}_1=\cos{\left( x_1 \right)}-x_2=-z_1-k_1x_1
+$$
+
+
+Найдем $\dot{z}_1$:
+$$
+\dot{z}_1=\dot{x}_2-\dot{\varphi}_{1,t}(x_1),
+$$
+$$
+\dot{\varphi}_{1,t}(x_1)=\left(-\sin{\left( x_1 \right)}+k_1\right)\dot{x}_1=\left(\sin{\left( x_1 \right)}-k_1\right)\left( z_1+k_1x_1 \right),
+$$
+$$
+\dot{z}_1=x_1+x_3-\left( \sin{\left( x_1 \right)}-k_1 \right)\left( z_1+k_1x_1 \right)
+$$
+
+
+Расширенная функция Ляпунова:
+$$
+V_2=V_1+0.5z_1^2,\ V_1=0.5x_1^2
+$$
+
+
+Ее производная:
+$$
+\dot{V}_2=x_1\dot{x}_1+z_1\dot{z}_1=-x_1\left( z_1+k_1x_1 \right)
++z_1\left( x_1+x_3-\left( \sin{\left( x_1 \right)}-k_1 \right)\left( z_1+k_1x_1 \right) \right),
+$$
+$$
+\dot{V}_2=-k_1x_1^2+z_1x_3-z_1^2\sin{\left( x_1 \right)}-z_1k_1x_1\sin{\left( x_1 \right)}+z_1^2k_1+z_1k_1^2x_1
+$$
+
+
+Выберем виртуальное управление $x_3=\varphi_2(x_1,x_2)$:
+$$
+x_3=z_1\sin{\left( x_1 \right)}+k_1x_1\sin{\left( x_1 \right)}-z_1k_1-k_1^2x_1-z_1k_2,\ k_2>0
+$$
+
+
+Тогда, после подстановки $z_1x_3$:
+$$
+\dot{V}_2=-k_1x_1^2-k_2z_1^2<0\,\forall(x_1,z_1)\neq(0,0),k_2>0
+$$
+
+
+Подставим $z_1$ в $\varphi_2(x_1,x_2)$:
+\begin{align*}
+    \varphi_2(x_1,x_2)=&x_2\sin{\left( x_1 \right)}-\sin{\left( x_1 \right)}\cos{\left( x_1 \right)}
+    -k_1x_2+\\ &+k_1\cos{\left( x_1 \right)}-k_2x_2+k_2\cos{\left( x_1 \right)}+k_2k_1x_1
+\end{align*}
+
+
+Введем следующую ошибку отслеживания и проведем аналогичные действия:
+$$
+z_2=x_3-\varphi_2(x_1,x_2)\Rightarrow \dot{z}_2=\dot{x}_3-\dot{\varphi}_{2,t}(x_1,x_2),
+$$
+\begin{align*}
+    \dot{\varphi}_{2,t}(x_1,x_2)=&\dot{x}_2\sin{\left( x_1 \right)}-k_1\dot{x}_2
+    -k_2\dot{x}_2+\dot{x}_1x_2\cos{\left( x_1 \right)}+\\ &-\dot{x}_1\cos{\left( 2x_1 \right)}
+    -k_1\dot{x}_1\sin{\left( x_1 \right)}-k_2\dot{x}_1\sin{\left( x_1 \right)}+k_2k_1\dot{x}_1
+\end{align*}
+
+
+Подставим $\dot{x}_1,\dot{x}_2$ в $\dot{\varphi}_{2,t}(x_1,x_2)$:
+\begin{align*}
+    \dot{\varphi}_{2,t}(x_1,x_2)=&x_1\sin{\left( x_1 \right)}+x_3\sin{\left( x_1 \right)}
+    +x_2\cos^2{\left( x_1 \right)}-x_2^2\cos{\left( x_1 \right)}+\\
+    &-\cos{\left( x_1 \right)}\cos{\left( 2x_1 \right)}+x_2\cos{\left( 2x_1 \right)}-k_1x_1-k_1x_3+\\
+    &-\frac{k_1}{2}\sin{\left( 2x_1 \right)}+k_1x_2\sin{\left( x_1 \right)}-k_2x_1-k_2x_3+\\
+    &-\frac{k_2}{2}\sin{\left( 2x_1 \right)}+k_2x_2\sin{\left( x_1 \right)}+k_2k_1\cos{\left( x_1 \right)}-k_2k_1x_2
+\end{align*}
+
+
+Тогда:
+\begin{align*}
+    \dot{z}_2=&x_1x_3+\left( 2-\sin{\left( x_3 \right)} \right)x_4
+    -x_1\sin{\left( x_1 \right)}-x_3\sin{\left( x_1 \right)}+\\
+    &-x_2\cos^2{\left( x_1 \right)}+x_2^2\cos{\left( x_1 \right)}+
+    \cos{\left( x_1 \right)}\cos{\left( 2x_1 \right)}-x_2\cos{\left( 2x_1 \right)}+\\
+    &+k_1x_1+k_1x_3+\frac{k_1}{2}\sin{\left( 2x_1 \right)}-k_1x_2\sin{\left( x_1 \right)}+k_2x_1+k_2x_3+\\
+    &+\frac{k_2}{2}\sin{\left( 2x_1 \right)}-k_2x_2\sin{\left( x_1 \right)}-k_2k_1\cos{\left( x_1 \right)}+k_2k_1x_2
+\end{align*}
+
+
+Расширенная функция Ляпунова:
+$$
+V_3=V_2+0.5z_2^2,\ V_2=0.5x_1^2+0.5z_1^2
+$$
+
+
+Ее производная:
+$$
+\dot{V}_3=-k_1x_1^2-k_2z_1^2+z_2\dot{z}_2
+$$
+
+
+При умножении $z_2$ на $\dot{z}_2$
+все слагаемые, кроме $zx_4\left( 2-\sin{\left( x_3 \right)} \right)$,
+получатся неопределенными по знаку.
+Их нужно скомпенсировать с помощью
+виртуального управления $x_4=\varphi_3(x_1,x_2,x_3)$,
+а также добавить отрицательно определенное слагаемое с $z_2$:
+\begin{align*}
+    \varphi_3(x_1,x_2,x_3)=&\frac{1}{2-\sin{\left( x_3 \right)}}\left(-x_1x_3\right.
+    +x_1\sin{\left( x_1 \right)}+x_3\sin{\left( x_1 \right)}+\\
+    &+x_2\cos^2{\left( x_1 \right)}-x_2^2\cos{\left( x_1 \right)}
+    -\cos{\left( x_1 \right)}\cos{\left( 2x_1 \right)}+x_2\cos{\left( 2x_1 \right)}+\\
+    &-k_1x_1-k_1x_3-\frac{k_1}{2}\sin{\left( 2x_1 \right)}+k_1x_2\sin{\left( x_1 \right)}
+    -k_2x_1-k_2x_3+\\
+    &-\frac{k_2}{2}\sin{\left( 2x_1 \right)}+k_2x_2\sin{\left( x_1 \right)}
+    \left.+k_2k_1\cos{\left( x_1 \right)}-k_2k_1x_2-k_3z_2\right),\\
+    &k_3>0
+\end{align*}
+
+
+Тогда:
+$$
+\dot{V}_3=-k_1x_1^2-k_2z_1^2-k_3z_2^2<0\,\forall(x_1,z_1,z_2)\neq(0,0,0),k_1,k_2,k_3>0
+$$
+
+
+Введем ошибку:
+$$
+z_3=x_4-\varphi_3(x_1,x_2,x_3)\Rightarrow \dot{z}_3=\dot{x}_4-\dot{\varphi}_{3,t}(x_1,x_2,x_3)
+$$
 
 
 \section{Вывод}

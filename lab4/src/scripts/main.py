@@ -15,6 +15,11 @@ def controller(x1, x2):
     u = (-x1 - x1**2 - (np.cos(x1) + 2*x1 + k1)*(x2 + np.sin(x1) + x1**2) - k2*z) / denom
     return u
 
+def controller2(x1, x2):
+    # z=x2+k1*x1
+    # return -2*x1-k1*z+k1**2*x1+k1*x1**3-k2*z
+    return -2*x1-k1*x2+k1*x1**3-k2*x2-k2*k1*x1
+
 def dynamics(t, x):
     x1, x2 = x
     u = controller(x1, x2)
@@ -22,18 +27,27 @@ def dynamics(t, x):
     dx2 = x1**2 + (2 + np.sin(x1)) * u
     return [dx1, dx2]
 
+def dynamics2(t, x):
+    x1, x2 = x
+    u=controller2(x1,x2)
+    dx1=x2-x1**3
+    dx2=x1+u
+    return [dx1, dx2]
+
 
 t_span = (0, 10)
 t_eval = np.arange(0, 10.001, 0.001)
 x0 = [1.0, -0.5]
 
-sol = solve_ivp(dynamics, t_span, x0, t_eval=t_eval, method='RK45', rtol=1e-8, atol=1e-10)
+# sol = solve_ivp(dynamics, t_span, x0, t_eval=t_eval, method='RK45', rtol=1e-8, atol=1e-10)
+sol = solve_ivp(dynamics2, t_span, x0, t_eval=t_eval, method='RK45', rtol=1e-8, atol=1e-10)
 
 t = sol.t
 x1 = sol.y[0]
 x2 = sol.y[1]
 
-u_arr = np.array([controller(x1[i], x2[i]) for i in range(len(t))])
+# u_arr = np.array([controller(x1[i], x2[i]) for i in range(len(t))])
+u_arr = np.array([controller2(x1[i], x2[i]) for i in range(len(t))])
 
 plt.figure(figsize=(12, 8))
 
