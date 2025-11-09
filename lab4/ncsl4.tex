@@ -195,14 +195,67 @@ $$
 
 Найдем $\dot{\varphi}_t(x_1)$:
 $$
-\dot{\varphi}_t(x_1)=\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\dot{x}_1=\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\left( z-k_1x_1 \right)
+\dot{\varphi}_t(x_1)=\left(-\cos{\left( x_1 \right)}-2x_1-k_1\right)\dot{x}_1=-\left(\cos{\left( x_1 \right)}+2x_1+k_1\right)\left( z-k_1x_1 \right)
 $$
 
 
-Тогда, $\dot{z}$:
+Тогда:
 $$
-\dot{z}=x_1^2+\left( 2+\sin{\left( x_1 \right)} \right)u-\left(\cos{\left( x_1 \right)}-2x_1-k_1\right)\left( z-k_1x_1 \right)
+\dot{z}=x_1^2+\left( 2+\sin{\left( x_1 \right)} \right)u+\left(\cos{\left( x_1 \right)}+2x_1+k_1\right)\left( z-k_1x_1 \right)
 $$
+
+
+Полная функция Ляпунова:
+$$
+V=V_1+0.5z^2,\ V_1=0.5x_1^2
+$$
+
+
+Ее производная:
+$$
+\dot{V}=x_1\dot{x}_1+z\dot{z},
+$$
+$$
+\dot{V}=x_1\left( z-k_1x_1 \right)+z\left( x_1^2+\left( 2+\sin{\left( x_1 \right)} \right)u+\left(\cos{\left( x_1 \right)}+2x_1+k_1\right)\left( z-k_1x_1 \right) \right),
+$$
+$$
+\dot{V}=-k_1x_1^2+z\left( 2+\sin{\left( x_1 \right)} \right)u+zx_1+zx_1^2+z\left( \cos{\left( x_1 \right)}+2x_1+k_1 \right)\left( z-k_1x_1 \right),
+$$
+
+
+Выберем управление $u(t)$ так, чтобы
+компенсировать
+неопределенные по знаку слагаемые и
+добавить отрицательно определенное слагаемое с $z$:
+$$
+u=\frac{1}{2+\sin{\left( x_1 \right)}}\left( -x_1-x_1^2-\left( \cos{\left( x_1 \right)}+2x_1+k_1 \right)\left( z-k_1x_1 \right) -k_2z\right),\ k_2>0,
+$$
+$$
+\dot{V}=-k_1x_1^2-k_2z^2<0\,\forall(x_1,z)\neq(0,0),k_1,k_2>0
+$$
+
+
+Начало координат глобально асимптотически устойчиво с таким законом
+управления $u$.
+
+
+Подставляя $z=x_2+\sin{\left( x_1 \right)}+x_1^2+k_1x_1$ в $u$, итоговый закон управления:
+\begin{align*}
+    u=&\frac{1}{2+\sin{\left( x_1 \right)}}\left( -x_1-x_1^2-\left( \cos{\left( x_1 \right)}+2x_1+k_1 \right)\left( x_2+\sin{\left( x_1 \right)}+x_1^2 \right)+\right.\\
+    &\left.-k_2\left( x_2+\sin{\left( x_1 \right)+x_1^2+k_1x_1} \right) \right)
+\end{align*}
+
+
+Выполним моделирование системы при $k_1=2,k_2=3,x_0=(1,-0.5)$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{1xu.png}
+    \caption{Графики $x_i(t),u(t)$}
+    \label{fig:1xu}
+\end{figure}
+
+
+Вектор состояния и управление стремятся к нулю с течением времени.
 
 
 \section{Задание 2}
