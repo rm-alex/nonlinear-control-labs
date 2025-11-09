@@ -1,0 +1,192 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage{tempora}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bfseries\centering\MakeUppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]{\bfseries}{\thesubsubsection.}{1em}{}
+
+\renewcommand{\contentsname}{\hfill \textbf{СОДЕРЖАНИЕ} \hfill\null}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{cmap}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.7}
+
+\lstdefinestyle{code}{
+    language=Python, % change if needed
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\small\color{LightGray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    rulecolor=\color{LightGray},
+    linewidth=\linewidth,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{violet},
+    escapeinside={\%*}{*)},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt
+}
+\lstset{style=code}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={ncs3},
+    pdfauthor={Rumyantsev Alexey},
+    pdfsubject={control},
+    pdfkeywords={LaTeX, PDF},
+    pdfpagemode=FullScreen,
+}
+
+\graphicspath{{src/images/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+        \vspace*{2.5mm}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО»\\
+        \vspace*{2.5mm}
+        \textbf{ФАКУЛЬТЕТ СИСТЕМ УПРАВЛЕНИЯ И РОБОТОТЕХНИКИ}
+        \vfill
+
+        {\large ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №5}\\
+        {\large по дисциплине}\\
+        {\large\bfseries <<НЕЛИНЕЙНЫЕ СИСТЕМЫ УПРАВЛЕНИЯ>>}\\
+        {\large на тему}\\
+        {\large\bfseries <<СИНТЕЗ РАЗРЫВНОГО И НЕПРЕРЫВНОГО СТАБИЛИЗИРУЮЩИХ РЕГУЛЯТОРОВ НА ОСНОВЕ СКОЛЬЗЯЩИХ РЕЖИМОВ>>}\\
+        \vfill
+
+        \begin{flushright}
+            Выполнили: студенты\\
+            Румянцев А. А., R3441\\
+            Дьячихин Д. Н., R3480\medskip\\
+
+            Проверил: преподаватель\\
+            Зименко К. А.
+        \end{flushright}
+
+        \vfill
+
+        Санкт-Петербург\\
+        2025
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+\section{Задание 1}
+\subsection{Условие}
+Рассмотрим систему:
+$$
+\begin{cases}
+    \dot{x}_1=x_2+\sin{x_1},\\
+    \dot{x}_2=\theta_1x_1^2+\left( 2+\theta_2 \right)u,
+\end{cases}
+$$
+где $|\theta_1|\leq1,|\theta_2|\leq1$. Весь вектор
+состояния измерим. Необходимо:
+\begin{enumerate}
+    \item синтезировать стабилизирующий разрывный регулятор на основе скользящих режимов;
+     \item синтезировать стабилизирующий непрерывный регулятор на основе скользящих режимов;
+	\item провести соответствующий анализ устойчивости;
+	\item провести математическое моделирование.
+\end{enumerate}
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Задание 2}
+\subsection{Условие}
+Рассмотрим систему:
+$$
+\begin{cases}
+    \dot{x}_1=x_2+a_1x_1\sin{x_1},\\
+    \dot{x}_2=a_2x_1x_2+3u,
+\end{cases}
+$$
+где $a_1,a_2$ -- неизвестные параметры,
+$|a_1-1|\leq1,|a_2-1|\leq1$.
+Весь вектор состояния измерим.
+Необходимо синтезировать стабилизирующий
+регулятор на основе скользящих режимов,
+провести соответствующий анализ
+устойчивости и провести математическое моделирование.
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Задание 3}
+\subsection{Условие}
+Рассмотрим уравнение движения для маятника в виде:
+$$
+ml\ddot{\theta}+mg\sin{\theta}+kl\dot{\theta}=
+\frac{T}{l}+mh(t)\cos{\theta},
+$$
+где $h$ -- горизонтальное ускорение,
+$T$ -- управляющий момент.
+
+
+Предположим, что:
+$$
+0.8\leq l\leq 1,\ 0.5\leq m \leq 1,\ 0.1\leq k\leq 0.2,\ |h(t)|\leq0.5
+$$
+и $g = 9.81$.
+Требуется стабилизировать маятник при
+$\theta=0$ для произвольных начальных условий.
+Необходимо разработать непрерывный регулятор
+на основе скользящего режима с обратной связью по состоянию.
+
+
+\subsection{Выполнение}
+...
+
+
+\section{Вывод}
+...
+
+\end{document}
