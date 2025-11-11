@@ -305,7 +305,7 @@ $$
 Синтезируем непрерывный регулятор на основе скользящих режимов.
 
 
-Для уменьшения дрожания
+Для уменьшения колебаний
 из-за задержки переключения управления,
 заменим в управлении функцию $\operatorname{sign}$
 функцией насыщения:
@@ -400,10 +400,10 @@ $\dot{V}<0$ и $r(t)$ убывает до нее не более чем $r_*$.
 эквивалентная и переключающая. Первая стремится к нулю
 вместе с состоянием. Вторая не стремится к нулю, а
 переключается между $\pm\beta_0$, из-за чего
-получается высокочастотное дрожание -- график
+получаются высокочастотные колебания -- график
 $u(t)$ выглядит как импульсный сигнал
 при устоявшейся системе. По графику видно,
-что управление скачет от $\approx-\beta_0=-0.8$
+что управление меняется от $\approx-\beta_0=-0.8$
 до $\approx+\beta_0=0.8$.
 
 
@@ -426,7 +426,136 @@ $|a_1-1|\leq1,|a_2-1|\leq1$.
 
 
 \subsection{Выполнение}
-...
+Выберем поверхность:
+$$
+s=ax_1+x_2,\ a>0
+$$
+
+
+На поверхности $s=0$:
+$$
+x_2=-ax_1,\ x_2=\dot{x}_1-a_1x_1\sin{x}_1\Rightarrow \dot{x}_1=-ax_1+a_1x_1\sin{x_1},
+$$
+$$
+\dot{x}_1=x_1\left( -a+a_1\sin{x_1} \right)
+$$
+
+
+Функция Ляпунова и ее производная для подсистемы на поверхности:
+$$
+V_1(x_1)=0.5x^2\Rightarrow \dot{V}_1=x_1\dot{x}_1=x_1^2\left( -a+a_1\sin{x_1} \right)
+$$
+
+
+Так как $|\sin{x_1}|\leq|x_1|,|a_1|\leq2$:
+$$
+a_1\sin{x_1}\leq|a_1|\cdot|\sin{x_1}|\leq2|x_1|
+$$
+
+
+Тогда:
+$$
+\dot{V}_1\leq x_1^2\left( -a+2|x_1| \right)<0\,\forall x_1: 0<|x_1|<\frac{a}{2}
+$$
+
+
+Начало координат локально асимптотически устойчиво.
+
+
+Рассмотрим $\dot{s}$:
+$$
+\dot{s}=a\left( x_2+a_1x_1\sin{x_1} \right)+a_2x_1x_2+3u=\Delta(x)+3u
+$$
+
+
+Предположим номинальные значения $|a_i-1|=0\Rightarrow a_1=1,a_2=1$.
+
+
+Тогда, номинальная эквивалентная часть регулятора,
+обеспечивающая $\\\dot{s}\to0$ в номинальном случае:
+$$
+\Delta_{a_i=1}(x)+3u_\text{eq,nom}=0\Rightarrow u_\text{eq,nom}=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)
+$$
+
+
+Добавим разрывную часть:
+$$
+u=u_\text{eq,nom}+u_\text{sw},\ u_\text{sw}=-\beta(x)\operatorname{sign}(s)
+$$
+
+
+Разрывный регулятор:
+$$
+u=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)-\beta(x)\operatorname{sign}(s)
+$$
+
+
+Подставим в $\dot{s}$:
+$$
+\dot{s}=\Delta(x)+3\left( u_\text{eq,nom}+u_\text{sw} \right)=3u_\text{eq,nom}+\Delta_{a_i=1}(x)+3u_\text{sw}+\Delta(x)-\Delta_{a_i=1}(x),
+$$
+$$
+\dot{s}=3u_\text{sw}+a\left( a_1-1 \right)x_1\sin{x_1}+\left( a_2-1 \right)x_1x_2=3u_\text{sw}+\delta(x)
+$$
+
+
+Оценим $\delta(x)$ при $|a_1-1|\leq1,|a_2-1|\leq1$:
+$$
+|\delta(x)|\leq a|x_1\sin{x_1}|+|x_1x_2|\leq ax_1^2+|x_1x_2|
+$$
+
+
+Тогда:
+$$
+\dot{s}=-3\beta(x)\operatorname{sign}(s)+ax_1^2+|x_1x_2|
+$$
+
+
+Оценим производную функции Ляпунова $V=0.5s^2$:
+$$
+\dot{V}=s\dot{s}=s\left( -3\beta(x)\operatorname{sign}(s)+\delta(x) \right)=-3\beta(x)|s|+\delta(x)s,
+$$
+$$
+\dot{V}=-3\beta(x)|s|+\delta(x)s\leq-3\beta(x)|s|+|\delta(x)||s|=-\left( 3\beta(x)-|\delta(x)| \right)|s|
+$$
+
+
+Если выбрать $3\beta(x)\geq|\delta(x)|+\beta_0,\ \beta_0>0$:
+$$
+\dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0
+$$
+
+
+Это гарантирует достижение поверхности $s=0$
+за конечное время.
+
+
+Выберем:
+$$
+\beta(x)\geq\frac{1}{3}\left( ax_1^2+|x_1x_2|+\beta_0 \right),\ \beta_0>0
+$$
+
+
+Разрывный закон управления:
+$$
+u=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)-\frac{1}{3}\left( ax_1^2+|x_1x_2|+\beta_0 \right)\operatorname{sign}(s)
+$$
+
+
+Заменим $\operatorname{sign}(s)$ на $\operatorname{sat}(s/\varepsilon)$
+и получим непрерывный закон управления:
+$$
+u=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)-\frac{1}{3}\left( ax_1^2+|x_1x_2|+\beta_0 \right)\operatorname{sat}(s/\varepsilon)
+$$
+
+
+Моделирование системы при $a=2,\beta_0=0.8,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,a_1=0.5,a_2=1$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{2xsu.png}
+    \caption{Графики $x_i(t),s(t),u(t)$}
+    \label{fig:2xsu}
+\end{figure}
 
 
 \section{Задание 3}

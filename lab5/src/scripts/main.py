@@ -17,10 +17,11 @@ def sat(x):
     return np.clip(x, -1, 1)
 
 def control(x1, x2, s, mode):
+    u = - (a * (x2 + np.sin(x1))) / 2.0
     if mode == "discontinuous":
-        u = - (a * (x2 + np.sin(x1))) / 2.0 - beta0 * np.sign(s)
+        u -= beta0 * np.sign(s)
     elif mode == "continuous":
-        u = - (a * (x2 + np.sin(x1))) / 2.0 - beta0 * sat(s / eps)
+        u -= beta0 * sat(s / eps)
     else:
         raise ValueError("mode must be 'discontinuous' or 'continuous'")
     return u
