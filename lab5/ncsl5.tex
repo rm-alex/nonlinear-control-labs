@@ -305,6 +305,108 @@ $$
 Синтезируем непрерывный регулятор на основе скользящих режимов.
 
 
+Для уменьшения дрожания
+из-за задержки переключения управления,
+заменим в управлении функцию $\operatorname{sign}$
+функцией насыщения:
+$$
+\operatorname{sat}\left( \frac{s}{\varepsilon} \right)=
+\begin{cases}
+    s/\varepsilon, &|s|\leq\varepsilon,\\
+    \operatorname{sign}(s), &|s|>\varepsilon
+\end{cases}
+$$
+
+
+Непрерывный регулятор:
+$$
+u=-\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sat}\left( \frac{s}{\varepsilon} \right)
+$$
+
+
+Подставим $u$ в $\dot{s}$:
+$$
+\dot{s}=\theta_1x_1^2-\frac{\theta_2}{2}\left( ax_2+a\sin{x_1} \right)-\left( 2+\theta_2 \right)\beta_0\operatorname{sat}\left( \frac{s}{\varepsilon} \right)
+$$
+
+
+Аналогично оценим невязку абсолютной величиной
+$W(x)$ и зададим $V=0.5s^2$, тогда:
+$$
+\dot{V}=s\dot{s}\leq|s|W(x)-\left( 2+\theta_2 \right)\beta_0|s|\left|\operatorname{sat}\left( \frac{s}{\varepsilon} \right)\right|
+$$
+
+
+Если $|s|>\varepsilon$, то $|\operatorname{sat}|=1$
+-- аналогичное разрывному случаю условие на $\beta_0$,
+следовательно $\dot{V}\leq-\mu|s|,\mu>0$
+и достижение уменьшает $s$ до слоя $|s|\leq\varepsilon$.
+
+
+На слое $|s|\leq\varepsilon$ имеем $\operatorname{sat}(s/\varepsilon)=s/\varepsilon$,
+тогда:
+$$
+\dot{V}\leq|s|W(x)-\left( 2+\theta_2 \right)\beta_0\frac{s^2}{\varepsilon}
+$$
+
+
+Пусть на рассматриваемой рабочей области $\mathcal{D}$
+есть оценка:
+$$
+|\Delta(x)|\leq D_{\max}\leq |x_1|^2 + \frac{a}{2}(|x_2|+|x_1|)
+$$
+
+
+Тогда, для $r=|s|\leq\varepsilon$ оценивающее неравенство:
+$$
+\dot{V}\leq r D_{\max} - g_0\frac{\beta_0}{\varepsilon}r^2,\ g_0=\inf{\left( 2+\theta_2 \right)}=1
+$$
+
+
+Правая часть в $\dot{V}$ отрицательна, если:
+$$
+g_0\frac{\beta_0}{\varepsilon}r^2>rD_{\max}\Rightarrow r>\frac{D_{\max}\varepsilon}{g_0\beta_0}
+$$
+
+
+Предельный радиус:
+$$
+r_*:=\frac{D_{\max}\varepsilon}{g_0\beta_0}
+$$
+
+
+Тогда, при $r\in\left(r_*,\varepsilon\right]$ имеем
+$\dot{V}<0$ и $r(t)$ убывает до нее не более чем $r_*$.
+Следовательно, система обладает
+практической устойчивостью:
+внутри слоя $|s|\leq\varepsilon$
+значения $s(t)$ стремятся к компактному
+множеству $|s|\leq r_*$.
+
+
+Моделирование системы при $a=2,\beta_0=0.8,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,\theta_1=0.5,\theta_2=-0.5$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{1xsu.png}
+    \caption{Графики $x_i(t),s(t),u(t)$}
+    \label{fig:1xsu}
+\end{figure}
+
+
+Все графики сошлись к нулю, кроме разрывного управления.
+
+
+В разрывном управлении две составляющие --
+эквивалентная и переключающая. Первая стремится к нулю
+вместе с состоянием. Вторая не стремится к нулю, а
+переключается между $\pm\beta_0$, из-за чего
+получается высокочастотное дрожание -- график
+$u(t)$ выглядит как импульсный сигнал
+при устоявшейся системе. По графику видно,
+что управление скачет от $\approx-\beta_0=-0.8$
+до $\approx+\beta_0=0.8$.
+
+
 \section{Задание 2}
 \subsection{Условие}
 Рассмотрим систему:
