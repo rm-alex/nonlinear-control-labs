@@ -3,21 +3,21 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 
-a = 2.0
-beta0 = 0.8
+a = 1.0
+beta0 = 0.1
 eps = 0.01
 Tmax = 10.0
 x0 = [1.0, 0.0]
 
 a1 = 0.5
-a2 = 1
+a2 = 1.5
 
 
 def sat(x):
     return np.clip(x, -1, 1)
 
 def control(x1, x2, s):
-    u = -1/3*(a*x2+a*x1*np.sin(x1)+x1*x2)-1/3*(a*x1**2+abs(x1*x2)+beta0)*sat(s/eps)
+    u = -1/3*(a*x2+a*x1*np.sin(x1)+x1*x2)-1/3*(a*x1**2+abs(x1*x2)+beta0)*sat(s/eps) # np.sign for discrete
     return u
 
 def system(t, x):

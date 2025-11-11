@@ -501,26 +501,26 @@ $$
 
 Оценим $\delta(x)$ при $|a_1-1|\leq1,|a_2-1|\leq1$:
 $$
-|\delta(x)|\leq a|x_1\sin{x_1}|+|x_1x_2|\leq ax_1^2+|x_1x_2|
+|\delta(x)|\leq a|x_1\sin{x_1}|+|x_1x_2|\leq ax_1^2+|x_1x_2|=\rho(x)
 $$
 
 
 Тогда:
 $$
-\dot{s}=-3\beta(x)\operatorname{sign}(s)+ax_1^2+|x_1x_2|
+\dot{s}=-3\beta(x)\operatorname{sign}(s)+ax_1^2+|x_1x_2|=-3\beta(x)\operatorname{sign}(s)+\rho(x)
 $$
 
 
 Оценим производную функции Ляпунова $V=0.5s^2$:
 $$
-\dot{V}=s\dot{s}=s\left( -3\beta(x)\operatorname{sign}(s)+\delta(x) \right)=-3\beta(x)|s|+\delta(x)s,
+\dot{V}=s\dot{s}=s\left( -3\beta(x)\operatorname{sign}(s)+\rho(x) \right)=-3\beta(x)|s|+\rho(x)s,
 $$
 $$
-\dot{V}=-3\beta(x)|s|+\delta(x)s\leq-3\beta(x)|s|+|\delta(x)||s|=-\left( 3\beta(x)-|\delta(x)| \right)|s|
+\dot{V}=-3\beta(x)|s|+\rho(x)s\leq-3\beta(x)|s|+|\rho(x)||s|=-\left( 3\beta(x)-|\rho(x)| \right)|s|
 $$
 
 
-Если выбрать $3\beta(x)\geq|\delta(x)|+\beta_0,\ \beta_0>0$:
+Если выбрать $3\beta(x)\geq|\rho(x)|+\beta_0,\ \beta_0>0$:
 $$
 \dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0
 $$
@@ -549,7 +549,7 @@ u=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)-\frac{1}{3}\left( ax_1^2+
 $$
 
 
-Моделирование системы при $a=2,\beta_0=0.8,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,a_1=0.5,a_2=1$:
+Моделирование системы при $a=1,\beta_0=0.1,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,a_1=0.5,a_2=1.5$:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{2xsu.png}
