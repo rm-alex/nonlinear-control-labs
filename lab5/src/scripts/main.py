@@ -4,7 +4,7 @@ from scipy.integrate import solve_ivp
 
 
 a = 2.0
-beta0 = 0.8
+beta0 = 0.1
 eps = 0.01
 Tmax = 10.0
 x0 = [1.0, 0.0]
@@ -18,10 +18,11 @@ def sat(x):
 
 def control(x1, x2, s, mode):
     u = - (a * (x2 + np.sin(x1))) / 2.0
+    beta_x=abs(abs(x1)**2+a/2*(abs(x2)+abs(x1)))+beta0
     if mode == "discontinuous":
-        u -= beta0 * np.sign(s)
+        u -= beta_x * np.sign(s)
     elif mode == "continuous":
-        u -= beta0 * sat(s / eps)
+        u -= beta_x * sat(s / eps)
     else:
         raise ValueError("mode must be 'discontinuous' or 'continuous'")
     return u

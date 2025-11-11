@@ -169,7 +169,7 @@ $$
 \dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)u,
 $$
 $$
-\dot{s}=\Delta(x)+\left( 2+\theta_2 \right)u,\ \Delta(x)\equiv ax_2+a\sin{x_1}+\theta_1x_1^2
+\dot{s}=\left( 2+\theta_2 \right)u+\Delta(x),\ \Delta(x)\equiv a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2
 $$
 
 
@@ -206,7 +206,7 @@ $$
 
 
 Такое допущение возможно вследствие
-наличия переключающей части с
+наличия переключающей части $\beta(x)\operatorname{sign}(s)$ с
 коэффициентом переключения $\beta_0$,
 который при верном подборе компенсирует влияние отклонений $\theta_i$.
 
@@ -217,89 +217,90 @@ $$
 
 Тогда, номинальная эквивалентная часть:
 $$
-u_\text{eq,nom}=-\frac{ax_2+a\sin{x_1}}{2}
+u_\text{eq,nom}=-\frac{a}{2}\left( x_2+\sin{x_1} \right)
 $$
 
 
 Добавим переключающую часть:
 $$
-u_\text{sw}=-\beta_0\operatorname{sign}(s),\ \beta_0>0
+u_\text{sw}=-\beta(x)\operatorname{sign}(s)
 $$
 
 
-Итоговый разрывный регулятор:
+Разрывный регулятор:
 $$
-u=-\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sign}(s),\ \beta_0>0
+u=-\frac{a}{2}\left( x_2+\sin{x_1} \right)-\beta(x)\operatorname{sign}(s)
 $$
 
 
 Подставим $u$ в $\dot{s}$:
 $$
-\dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)\left( -\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sign}(s) \right),
+\dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)\left( -\frac{a}{2}\left( x_2+\sin{x_1} \right)-\beta(x)\operatorname{sign}(s) \right),
+$$
+% $$
+% \dot{s}=\theta_1x_1^2-\frac{2+\theta_2}{2}\left( ax_2+a\sin{x_1} \right)+ax_2+a\sin{x_1}-\left( 2+\theta_2 \right)\beta(x)\operatorname{sign}(s),
+% $$
+$$
+\dot{s}=-\left( 2+\theta_2 \right)\beta(x)\operatorname{sign}(s)+\theta_1x_1^2-\frac{\theta_2}{2}a\left( x_2+\sin{x_1} \right),
 $$
 $$
-\dot{s}=\theta_1x_1^2-\frac{2+\theta_2}{2}\left( ax_2+a\sin{x_1} \right)+ax_2+a\sin{x_1}-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s),
-$$
-$$
-\dot{s}=\theta_1x_1^2-\frac{\theta_2}{2}\left( ax_2+a\sin{x_1} \right)-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s)
+\dot{s}=-\left( 2+\theta_2 \right)\beta(x)\operatorname{sign}(s)+\delta(x)
 $$
 
 
-Оценим модуль <<невязки>> (первые два слагаемых).
-
-
+Оценим модуль <<невязки>> $\delta(x)$.
 Получим верхнюю оценку при $|\theta_1|\leq1,|\theta_2|\leq1,|\sin{x_1}|\leq|x_1|$:
 $$
-\left|\theta_1x_1^2-\frac{\theta_2}{2}a\left( x_2+\sin{x_1} \right)\right|\leq |x_1|^2+\frac{a}{2}\left( |x_2|+|x_1| \right)\equiv W(x)
+|\delta(x)|=\left|\theta_1x_1^2-\frac{\theta_2}{2}a\left( x_2+\sin{x_1} \right)\right|\leq |x_1|^2+\frac{a}{2}\left( |x_2|+|x_1| \right)\equiv \rho(x)
 $$
 
 
 Тогда:
 $$
-\dot{s}\leq W(x)-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s)
+\dot{s}\leq -\left( 2+\theta_2 \right)\beta(x)\operatorname{sign}(s)+\rho(x)
 $$
 
 
-Умножим выражение на $s$ и учтем $\operatorname{sign}(s)\cdot s=|s|$:
+Умножим выражение на $s$, учтем $\operatorname{sign}(s)\cdot s=|s|$
+и оценим верхнюю границу:
 $$
-s\dot{s}\leq s W(x)-\left( 2+\theta_2 \right)\beta_0|s|
-$$
-
-
-В правой части на $s$ не хватает модуля в первом слагаемом
--- заменим на верхнюю границу:
-$$
-W(x)\geq0\Rightarrow sW(x)\leq |s|W(x)
+s\dot{s}\leq -\left( 2+\theta_2 \right)\beta(x)|s|+\rho(x)s\leq -\left( 2+\theta_2 \right)\beta(x)|s|+|\rho(x)||s|
 $$
 
 
-Тогда:
+Вынесем общий множитель $-|s|$, положим $g_0:=\min{\left( 2+\theta_2 \right)}=1$
+и оценим верхнюю границу:
 $$
-s\dot{s}\leq |s| W(x)-\left( 2+\theta_2 \right)\beta_0|s|
+s\dot{s}\leq -\left( \left( 2+\theta_2 \right)\beta(x)-|\rho(x)| \right)|s|\leq -\left( g_0\beta(x)-|\rho(x)| \right)|s|,
 $$
-
-
-Так как $2+\theta_2\geq g_0=1$,
-достаточное условие достижения скольжения:
 $$
-\beta_0>\sup\limits_{x\in\mathcal{D}}{W(x)}+\delta,
-$$
-где $\mathcal{D}$ -- рассматриваемая область состояний,
-$\delta>0$ -- небольшой запас.
-
-
-Тогда:
-$$
-s\dot{s}\leq-\mu|s|,\ \mu=\left( \beta_0g_0-\sup{W(x)} \right)>0
+s\dot{s}\leq -\left( \beta(x)-|\rho(x)| \right)|s|
 $$
 
 
-Т.е. гарантируем, что при минимально возможном $g_0$
-и максимально возможном $W(x)$ их разница при $\beta_0g_0$ будет положительна.
+Если выбрать $\beta(x)\geq |\rho(x)|+\beta_0,\ \beta_0>0$:
+$$
+s\dot{s}\leq -\beta_0|s|<0\,\forall s\neq0,\ \beta_0>0
+$$
 
 
-Таким образом, для $V=0.5s^2$ имеем $\dot{V}=s\dot{s}\leq-\mu|s|,\mu>0$,
+Это аналогично записи через функцию Ляпунова и ее производную:
+$$
+V=0.5s^2,\ \dot{V}=s\dot{s}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0,\ \beta_0>0,
+$$
 что гарантирует достижение $s=0$ за конечное время.
+
+
+Выберем:
+$$
+\beta(x)\geq|x_1|^2+\frac{a}{2}\left( |x_2|+|x_1| \right)+\beta_0,\ \beta_0>0
+$$
+
+
+Разрывный закон управления:
+$$
+u=-\frac{a}{2}\left( x_2+\sin{x_1} \right)-\left(|x_1|^2+\frac{a}{2}\left( |x_2|+|x_1| \right)+\beta_0\right)\operatorname{sign}(s)
+$$
 
 
 Синтезируем непрерывный регулятор на основе скользящих режимов.
@@ -320,71 +321,39 @@ $$
 
 Непрерывный регулятор:
 $$
-u=-\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sat}\left( \frac{s}{\varepsilon} \right)
+u=-\frac{a}{2}\left( x_2+\sin{x_1} \right)-\beta(x)\operatorname{sat}\left( \frac{s}{\varepsilon} \right)
 $$
 
 
-Подставим $u$ в $\dot{s}$:
+Аналогично подставим $u$ в $\dot{s}$, оценим модуль невязки $\delta(x)$ абсолютной величиной
+$\rho(x)$ и коэффициент при $\beta(x)$ константой $g_0$:
 $$
-\dot{s}=\theta_1x_1^2-\frac{\theta_2}{2}\left( ax_2+a\sin{x_1} \right)-\left( 2+\theta_2 \right)\beta_0\operatorname{sat}\left( \frac{s}{\varepsilon} \right)
+\dot{s}=-\left( 2+\theta_2 \right)\beta(x)\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+\theta_1x_1^2-\frac{\theta_2}{2}\left( ax_2+a\sin{x_1} \right),
 $$
-
-
-Аналогично оценим невязку абсолютной величиной
-$W(x)$ и зададим $V=0.5s^2$, тогда:
 $$
-\dot{V}=s\dot{s}\leq|s|W(x)-\left( 2+\theta_2 \right)\beta_0|s|\left|\operatorname{sat}\left( \frac{s}{\varepsilon} \right)\right|
+\dot{s}\leq-g_0\beta(x)\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+\rho(x),\ g_0:=\min{\left( 2+\theta_2 \right)}=1
 $$
 
 
-Если $|s|>\varepsilon$, то $|\operatorname{sat}|=1$
--- аналогичное разрывному случаю условие на $\beta_0$,
-следовательно $\dot{V}\leq-\mu|s|,\mu>0$
-и достижение уменьшает $s$ до слоя $|s|\leq\varepsilon$.
+Зададим функцию Ляпунова $V=0.5s^2$, тогда:
+$$
+\dot{V}=s\dot{s}\leq-\beta(x)s\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+\rho(x)s
+$$
 
 
-На слое $|s|\leq\varepsilon$ имеем $\operatorname{sat}(s/\varepsilon)=s/\varepsilon$,
+При $|s|>\varepsilon:\operatorname{sat}(s/\varepsilon)=\operatorname{sign}(s)$
+-- аналогичный разрывному случай: $\dot{V}\leq-\beta_0|s|,\beta_0>0$
+-- уменьшение $s$ до $|s|\leq\varepsilon$.
+
+
+При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$,
 тогда:
 $$
-\dot{V}\leq|s|W(x)-\left( 2+\theta_2 \right)\beta_0\frac{s^2}{\varepsilon}
+\dot{V}\leq-\beta(x)\frac{s^2}{\varepsilon}+\rho(x)s
 $$
 
 
-Пусть на рассматриваемой рабочей области $\mathcal{D}$
-есть оценка:
-$$
-|\Delta(x)|\leq D_{\max}\leq |x_1|^2 + \frac{a}{2}(|x_2|+|x_1|)
-$$
-
-
-Тогда, для $r=|s|\leq\varepsilon$ оценивающее неравенство:
-$$
-\dot{V}\leq r D_{\max} - g_0\frac{\beta_0}{\varepsilon}r^2,\ g_0=\inf{\left( 2+\theta_2 \right)}=1
-$$
-
-
-Правая часть в $\dot{V}$ отрицательна, если:
-$$
-g_0\frac{\beta_0}{\varepsilon}r^2>rD_{\max}\Rightarrow r>\frac{D_{\max}\varepsilon}{g_0\beta_0}
-$$
-
-
-Предельный радиус:
-$$
-r_*:=\frac{D_{\max}\varepsilon}{g_0\beta_0}
-$$
-
-
-Тогда, при $r\in\left(r_*,\varepsilon\right]$ имеем
-$\dot{V}<0$ и $r(t)$ убывает до нее не более чем $r_*$.
-Следовательно, система обладает
-практической устойчивостью:
-внутри слоя $|s|\leq\varepsilon$
-значения $s(t)$ стремятся к компактному
-множеству $|s|\leq r_*$.
-
-
-Моделирование системы при $a=2,\beta_0=0.8,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,\theta_1=0.5,\theta_2=-0.5$:
+Моделирование системы при $a=2,\beta_0=0.1,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,\theta_1=0.5,\theta_2=-0.5$:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{1xsu.png}
@@ -402,9 +371,7 @@ $\dot{V}<0$ и $r(t)$ убывает до нее не более чем $r_*$.
 переключается между $\pm\beta_0$, из-за чего
 получаются высокочастотные колебания -- график
 $u(t)$ выглядит как импульсный сигнал
-при устоявшейся системе. По графику видно,
-что управление меняется от $\approx-\beta_0=-0.8$
-до $\approx+\beta_0=0.8$.
+при устоявшейся системе.
 
 
 \section{Задание 2}
@@ -499,30 +466,33 @@ $$
 $$
 
 
-Оценим $\delta(x)$ при $|a_1-1|\leq1,|a_2-1|\leq1$:
+Оценим модуль невязки $\delta(x)$ при $|a_1-1|\leq1,|a_2-1|\leq1$:
 $$
-|\delta(x)|\leq a|x_1\sin{x_1}|+|x_1x_2|\leq ax_1^2+|x_1x_2|=\rho(x)
+|\delta(x)|=\left|a\left( a_1-1 \right)x_1\sin{x_1}+\left( a_2-1 \right)x_1x_2\right|,
+$$
+$$
+|\delta(x)|\leq a|x_1\sin{x_1}|+|x_1x_2|\leq ax_1^2+|x_1x_2|\equiv\rho(x)
 $$
 
 
 Тогда:
 $$
-\dot{s}=-3\beta(x)\operatorname{sign}(s)+ax_1^2+|x_1x_2|=-3\beta(x)\operatorname{sign}(s)+\rho(x)
+\dot{s}\leq-3\beta(x)\operatorname{sign}(s)+ax_1^2+|x_1x_2|=-3\beta(x)\operatorname{sign}(s)+\rho(x)
 $$
 
 
 Оценим производную функции Ляпунова $V=0.5s^2$:
 $$
-\dot{V}=s\dot{s}=s\left( -3\beta(x)\operatorname{sign}(s)+\rho(x) \right)=-3\beta(x)|s|+\rho(x)s,
+\dot{V}=s\dot{s}\leq s\left( -3\beta(x)\operatorname{sign}(s)+\rho(x) \right)=-3\beta(x)|s|+\rho(x)s,
 $$
 $$
-\dot{V}=-3\beta(x)|s|+\rho(x)s\leq-3\beta(x)|s|+|\rho(x)||s|=-\left( 3\beta(x)-|\rho(x)| \right)|s|
+\dot{V}\leq-3\beta(x)|s|+\rho(x)s\leq-3\beta(x)|s|+|\rho(x)||s|=-\left( 3\beta(x)-|\rho(x)| \right)|s|
 $$
 
 
 Если выбрать $3\beta(x)\geq|\rho(x)|+\beta_0,\ \beta_0>0$:
 $$
-\dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0
+\dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0,\ \beta_0>0
 $$
 
 
@@ -549,46 +519,35 @@ u=-\frac{1}{3}\left( ax_2+ax_1\sin{x_1}+x_1x_2 \right)-\frac{1}{3}\left( ax_1^2+
 $$
 
 
-Проверим устойчивость.
+Проверим устойчивость:
+$$
+V=0.5s^2,\ \dot{V}\leq -3\beta(x)s\operatorname{sat}\left(\frac{s}{\varepsilon}\right)+\rho(x)s
+$$
 
 
-Функция насыщения:
-$$
-\operatorname{sat}\left( \frac{s}{\varepsilon} \right)=
-\begin{cases}
-    s/\varepsilon, &|s|\leq\varepsilon,\\
-    \operatorname{sign}(s), &|s|>\varepsilon
-\end{cases}
-$$
+% Функция насыщения:
+% $$
+% \operatorname{sat}\left( \frac{s}{\varepsilon} \right)=
+% \begin{cases}
+%     s/\varepsilon, &|s|\leq\varepsilon,\\
+%     \operatorname{sign}(s), &|s|>\varepsilon
+% \end{cases}
+% $$
 
 
 При $|s|>\varepsilon:\operatorname{sat}(s/\varepsilon)=\operatorname{sign}(s)$,
 т.е. случай аналогичен дискретному:
 $$
-V=0.5s^2,\ \dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0
+\dot{V}\leq-\beta_0|s|=-\beta_0\sqrt{2V}<0\,\forall s\neq0,\ \beta_0>0
 $$
 
 
-Поверхность $s=0$ достигается за конечное время.
+Уменьшение $s$ до $|s|\leq\varepsilon$.
 
 
-При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$.
-Воспользуемся ранее найденной $\dot{s}$ с оцененной $|\delta(x)|\leq\rho(x)$:
+При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$, тогда:
 $$
-\dot{s}=3u_\text{sw}+\rho(x)
-$$
-
-
-Заменим в разрывной части управления $\operatorname{sign}(s)$
-на $s/\varepsilon$:
-$$
-u_\text{sw}=-\beta(x)\frac{s}{\varepsilon}
-$$
-
-
-Тогда:
-$$
-\dot{s}=-3\beta(x)\frac{s}{\varepsilon}+\rho(x)
+\dot{V}\leq -3\beta(x)\frac{s^2}{\varepsilon}+\rho(x)s
 $$
 
 
