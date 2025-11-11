@@ -166,8 +166,143 @@ $$
 
 Подставим $\dot{x}_1,\dot{x}_2$:
 $$
-\dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)u
+\dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)u,
 $$
+$$
+\dot{s}=\Delta(x)+\left( 2+\theta_2 \right)u,\ \Delta(x)\equiv ax_2+a\sin{x_1}+\theta_1x_1^2
+$$
+
+
+Необходимо выбрать $u$ так, чтобы
+выполнялось условие достижения скользящего режима:
+$$
+s\dot{s}\leq-\eta|s|,\ \eta>0
+$$
+
+
+Это эквивалентно:
+$$
+\dot{V}\leq-\eta|s|,\ V=0.5s^2
+$$
+
+
+Синтезируем дискретный регулятор на основе скользящих режимов.
+
+
+Выберем управление как сумму эквивалентной и переключающей составляющих:
+$$
+u=u_\text{eq}+u_\text{sw}
+$$
+
+
+Эквивалентная часть при $s=0$:
+$$
+u_\text{eq}=-\frac{\Delta(x)}{2+\theta_2}
+$$
+
+
+Параметры $\theta_{1},\theta_{2}$ неизвестны,
+поэтому положим их нулевыми.
+
+
+Такое допущение возможно вследствие
+наличия переключающей части с
+коэффициентом переключения $\beta_0$,
+который при верном подборе компенсирует влияние отклонений $\theta_i$.
+
+
+Кроме того, скользящий режим является робастным
+к параметрическим неопределенностям и возмущениям.
+
+
+Тогда, номинальная эквивалентная часть:
+$$
+u_\text{eq,nom}=-\frac{ax_2+a\sin{x_1}}{2}
+$$
+
+
+Добавим переключающую часть:
+$$
+u_\text{sw}=-\beta_0\operatorname{sign}(s),\ \beta_0>0
+$$
+
+
+Итоговый разрывный регулятор:
+$$
+u=-\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sign}(s),\ \beta_0>0
+$$
+
+
+Подставим $u$ в $\dot{s}$:
+$$
+\dot{s}=a\left( x_2+\sin{x_1} \right)+\theta_1x_1^2+\left( 2+\theta_2 \right)\left( -\frac{ax_2+a\sin{x_1}}{2}-\beta_0\operatorname{sign}(s) \right),
+$$
+$$
+\dot{s}=\theta_1x_1^2-\frac{2+\theta_2}{2}\left( ax_2+a\sin{x_1} \right)+ax_2+a\sin{x_1}-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s),
+$$
+$$
+\dot{s}=\theta_1x_1^2-\frac{\theta_2}{2}\left( ax_2+a\sin{x_1} \right)-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s)
+$$
+
+
+Оценим модуль <<невязки>> (первые два слагаемых).
+
+
+Получим верхнюю оценку при $|\theta_1|\leq1,|\theta_2|\leq1,|\sin{x_1}|\leq|x_1|$:
+$$
+\left|\theta_1x_1^2-\frac{\theta_2}{2}a\left( x_2+\sin{x_1} \right)\right|\leq |x_1|^2+\frac{a}{2}\left( |x_2|+|x_1| \right)\equiv W(x)
+$$
+
+
+Тогда:
+$$
+\dot{s}\leq W(x)-\left( 2+\theta_2 \right)\beta_0\operatorname{sign}(s)
+$$
+
+
+Умножим выражение на $s$ и учтем $\operatorname{sign}(s)\cdot s=|s|$:
+$$
+s\dot{s}\leq s W(x)-\left( 2+\theta_2 \right)\beta_0|s|
+$$
+
+
+В правой части на $s$ не хватает модуля в первом слагаемом
+-- заменим на верхнюю границу:
+$$
+W(x)\geq0\Rightarrow sW(x)\leq |s|W(x)
+$$
+
+
+Тогда:
+$$
+s\dot{s}\leq |s| W(x)-\left( 2+\theta_2 \right)\beta_0|s|
+$$
+
+
+Так как $2+\theta_2\geq g_0=1$,
+достаточное условие достижения скольжения:
+$$
+\beta_0>\sup\limits_{x\in\mathcal{D}}{W(x)}+\delta,
+$$
+где $\mathcal{D}$ -- рассматриваемая область состояний,
+$\delta>0$ -- небольшой запас.
+
+
+Тогда:
+$$
+s\dot{s}\leq-\mu|s|,\ \mu=\left( \beta_0g_0-\sup{W(x)} \right)>0
+$$
+
+
+Т.е. гарантируем, что при минимально возможном $g_0$
+и максимально возможном $W(x)$ их разница при $\beta_0g_0$ будет положительна.
+
+
+Таким образом, для $V=0.5s^2$ имеем $\dot{V}=s\dot{s}\leq-\mu|s|,\mu>0$,
+что гарантирует достижение $s=0$ за конечное время.
+
+
+Синтезируем непрерывный регулятор на основе скользящих режимов.
 
 
 \section{Задание 2}
