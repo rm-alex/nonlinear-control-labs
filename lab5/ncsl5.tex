@@ -337,7 +337,7 @@ $$
 
 Зададим функцию Ляпунова $V=0.5s^2$, тогда:
 $$
-\dot{V}=s\dot{s}\leq-\beta(x)s\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+\rho(x)s
+\dot{V}=s\dot{s}\leq-\beta(x)s\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+\rho(x)|s|
 $$
 
 
@@ -349,8 +349,67 @@ $$
 При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$,
 тогда:
 $$
-\dot{V}\leq-\beta(x)\frac{s^2}{\varepsilon}+\rho(x)s
+\dot{V}\leq-\frac{\beta(x)}{\varepsilon}s^2+\rho(x)|s|
 $$
+
+
+Подставим $\beta(x)$:
+$$
+\dot{V}\leq-\frac{\rho(x)+\beta_0}{\varepsilon}s^2+\rho(x)|s|=-\frac{\beta_0}{\varepsilon}s^2-\frac{\rho(x)}{\varepsilon}s^2+\rho(x)|s|
+$$
+
+
+Два последних члена:
+$$
+-\frac{\rho(x)}{\varepsilon}s^2+\rho(x)|s|=\rho(x)|s|\left( 1-\frac{|s|}{\varepsilon} \right)\geq0,
+$$
+так как $|s|\leq\varepsilon$ внутри полосы.
+
+
+Следовательно, худший случай $\dot{V}_{\max}$
+достигается, когда $\rho(x)$ максимально.
+
+
+Пусть $\rho_{\max}=\sup\limits_{x\in\mathcal{D}}{ \rho(x) }$,
+где $\mathcal{D}$ -- ограниченная и замкнутая область в пространстве состояний,
+в которой оценивается верхняя граница $|\delta(x)|\leq\rho(x)\leq \rho_{\max}$.
+
+
+Тогда, оценка сверху:
+$$
+\dot{V}\leq-\frac{\beta_0}{\varepsilon}s^2+\rho_{\max}|s|
+$$
+
+
+Тогда, $\dot{V}<0$ при:
+$$
+|s|>\frac{\varepsilon\rho_{\max}}{\beta_0}
+$$
+
+
+Следовательно, все траектории входят в полосу:
+$$
+|s|\leq\varepsilon^*_s:=\frac{\varepsilon\rho_{\max}}{\beta_0}
+$$
+и остаются в ней.
+
+
+Начало координат практически устойчиво --
+траектории не расходятся и в конечном счете
+входят в малую окрестность
+нуля радиуса $\mathcal{O}(\varepsilon)$
+и остаются в ней,
+так как динамика на поверхности устойчива.
+
+
+Если $\varepsilon\to0$, то $\varepsilon^*_s\to0$ --
+приближение к идеальному скользящему режиму
+с отклонением $\mathcal{O}(\varepsilon)$.
+
+
+Так как $\varepsilon=const.,\operatorname{sat}(s/\varepsilon)=s/\varepsilon,\beta(x)\geq\rho(x)+\beta_0,\beta_0>0$
+и система достигает полосы $|s|\leq\varepsilon$ за конечное время и остается в ней, то в окрестности поверхности
+$s=0$ возникает квазискользящий режим.
 
 
 Моделирование системы при $a=2,\beta_0=0.1,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,\theta_1=0.5,\theta_2=-0.5$:
@@ -521,7 +580,7 @@ $$
 
 Проверим устойчивость:
 $$
-V=0.5s^2,\ \dot{V}\leq -3\beta(x)s\operatorname{sat}\left(\frac{s}{\varepsilon}\right)+\rho(x)s
+V=0.5s^2,\ \dot{V}\leq -3\beta(x)s\operatorname{sat}\left(\frac{s}{\varepsilon}\right)+\rho(x)|s|
 $$
 
 
@@ -547,8 +606,35 @@ $$
 
 При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$, тогда:
 $$
-\dot{V}\leq -3\beta(x)\frac{s^2}{\varepsilon}+\rho(x)s
+\dot{V}\leq -3\beta(x)\frac{s^2}{\varepsilon}+\rho(x)|s|
 $$
+
+
+Подставим $\beta(x)$:
+$$
+\dot{V}\leq-3\frac{\beta_0}{\varepsilon}s^2-3\frac{\rho(x)}{\varepsilon}s^2+\rho(x)|s|
+$$
+
+
+Два последних члена:
+$$
+-3\frac{\rho(x)}{\varepsilon}s^2+\rho(x)|s|=\rho(x)|s|\left( 1-3\frac{|s|}{\varepsilon} \right)=Q(x,s)
+$$
+
+
+Оценим $Q(x,s)$:
+$$
+Q(x,s)\geq0: |s|\leq\frac{\varepsilon}{3};\
+Q(x,s)<0: \frac{\varepsilon}{3}<|s|\leq\varepsilon
+$$
+
+
+Т.е. вблизи $s=0$ возможно $\dot{V}>0$,
+тогда, аналогично предыдущему пункту:
+$$
+\dot{V}\leq-3\frac{\beta_0}{\varepsilon}+\rho_{\max}|s|,\ |s|>\varepsilon^*_s:=\frac{\varepsilon\rho_{\max}}{3\beta_0}: \dot{V}<0,
+$$
+что гарантирует практическую устойчивость с предельной полосой $|s(t)|\leq \varepsilon^*_s$ при $t\to\infty$.
 
 
 Моделирование системы при $a=1,\beta_0=0.1,\varepsilon=0.01,x_0=\left[ 1\ 0 \right]^T,a_1=0.5,a_2=1.5$:
