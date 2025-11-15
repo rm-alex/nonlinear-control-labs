@@ -669,10 +669,221 @@ $\theta=0$ для произвольных начальных условий.
 
 
 \subsection{Выполнение}
-...
+Обозначим:
+$$
+x_1=\theta,\ x_2=\dot{\theta}
+$$
+
+
+Выразим из уравнения $\ddot{\theta}$:
+$$
+\ddot{\theta}=\frac{1}{ml}\left( \frac{T}{l}+mh(t)\cos{\theta}-kl\dot{\theta}-mg\sin{\theta} \right),
+$$
+$$
+\ddot{\theta}=\frac{1}{ml^2}T+\frac{1}{l}h(t)\cos{\theta}-\frac{k}{m}\dot{\theta}-\frac{g}{l}\sin{\theta}
+$$
+
+
+Обозначим внутреннюю известную динамику:
+$$
+F(x)=-\frac{k}{m}x_2-\frac{g}{l}\sin{x_1}
+$$
+и возмущение:
+$$
+D(t,x)=\frac{1}{l}h(t)\cos{x_1}
+$$
+
+
+Тогда:
+$$
+\dot{x}_1=x_2,\ \dot{x}_2=\frac{1}{ml^2}T+F(x)+D(t,x)
+$$
+
+
+Коэффициент при управляющем моменте:
+$$b(x)=\frac{1}{ml^2}>0,\ b(x)\in\left[ \frac{1}{m_{\max}l_{\max}^2}=1,\frac{1}{m_{\min}l_{\min}^2}=3.125 \right]$$
+
+
+Оценка возмущения:
+$$
+|D(t,x)|\leq\frac{|h(t)|}{l_{\min}}\leq\frac{0.5}{0.8}=0.625
+$$
+
+
+Выберем поверхность скольжения:
+$$
+s=ax_1+x_2=a\theta+\dot{\theta},\ a>0
+$$
+
+
+На поверхности $s=0$:
+$$
+\dot{\theta}=-a\theta
+$$
+
+
+Для устойчивости достаточно $a>0$.
+
+
+Вычислим $\dot{s}$:
+$$
+\dot{s}=a\dot{\theta}+\ddot{\theta}=ax_2+\frac{1}{ml^2}T+F(x)+D(t,x)
+$$
+
+
+Обозначим:
+$$
+\Phi(x)=F(x)+ax_2=-\frac{k}{m}x_2-\frac{g}{l}\sin{x_1}+ax_2
+$$
+
+
+Тогда:
+$$
+\dot{s}=\frac{1}{ml^2}T+\Phi(x)+D(t,x)
+$$
+
+
+Хотим $\dot{s}=-\beta_0$. Положим управляющий момент:
+$$
+T=ml^2\left( -\Phi(x)+u_\text{sw}(s) \right),
+$$
+где переключающее управление:
+$$
+u_\text{sw}=-\beta_0\operatorname{sat}\left( \frac{s}{\varepsilon} \right),\ \beta_0>0
+$$
+
+
+Так как параметры неизвестны, то положим номинальные значения:
+$$
+\hat{m}=m_{\min}=0.5,\ \hat{l}=l_{\min}=0.8
+$$
+
+
+Тогда, регулятор:
+$$
+T(x)=\hat{m}\hat{l}^2\left( -\hat{\Phi}(x)-\beta_0\operatorname{sat}\left( \frac{s(x)}{\varepsilon} \right) \right),
+$$
+где:
+$$
+\hat{\Phi}(x)=-\frac{\hat{k}}{\hat{m}}x_2-\frac{g}{\hat{l}}\sin{x_1}+ax_2,\ \hat{k}=k_{\max}=0.2
+$$
+
+
+Для функции Ляпунова $V=0.5s^2$ производная:
+$$
+\dot{V}=s\dot{s}=s\left( \frac{1}{ml^2}T+\Phi(x)+D(t,x) \right)
+$$
+
+
+Подставим $T$ в $\dot{V}$:
+$$
+\dot{V}=-\gamma\beta_0s\operatorname{sat}\left( \frac{s}{\varepsilon} \right)+s\left( \Phi-\gamma\hat{\Phi} \right)+sD,\
+\gamma=\frac{\hat{m}\hat{l}^2}{ml^2}
+$$
+
+
+При $|s|>\varepsilon:\operatorname{sat}(s/\varepsilon)=\operatorname{sign}(s)$:
+$$
+\dot{V}=-\gamma\beta_0|s|+s\left( \Phi+\gamma\hat{\Phi} \right)+sD
+$$
+
+
+Оценим положительные слагаемые по абсолютной величине:
+$$
+s\left( \Phi-\gamma\hat{\Phi} \right)\leq|s||\Phi-\gamma\hat{\Phi}|,\ sD\leq|s||D|
+$$
+
+
+Тогда:
+$$
+\dot{V}\leq-\gamma\beta_0|s|+|s|\left( |\Phi-\gamma\hat{\Phi}| +|D|\right)
+$$
+
+
+Обозначим:
+$$
+\rho=|\Phi-\gamma\hat{\Phi}|+|D|
+$$
+
+
+Тогда:
+$$
+\dot{V}\leq-\left( \gamma\beta_0-\rho \right)|s|
+$$
+
+
+При $\gamma\beta_0>\sup\limits_{x\in\mathcal{D}}{\rho(x)}$
+получим $\dot{V}<0$, т.е. $s$ уменьшается до $|s|\leq\varepsilon$.
+
+
+При $|s|\leq\varepsilon:\operatorname{sat}(s/\varepsilon)=s/\varepsilon$:
+$$
+\dot{V}=-\gamma\beta_0\frac{s^2}{\varepsilon}+s\left( \Phi-\gamma\hat{\Phi} \right)+sD\leq-\gamma\beta_0\frac{s^2}{\varepsilon}+\rho(x)|s|
+$$
+
+
+Применим неравенство Юнга:
+$$
+\rho(x)|s|\leq\frac{\gamma\beta_0}{2\varepsilon}s^2+\frac{\varepsilon}{2\gamma\beta_0}\rho^2(x)
+$$
+
+
+Подставим в $\dot{V}$:
+$$
+\dot{V}\leq-\frac{\gamma\beta_0}{2\varepsilon}s^2+\frac{\varepsilon}{2\gamma\beta_0}\rho^2(x)
+$$
+
+
+Худший случай $\rho(x)=\sup\limits_{x\in\mathcal{D}}{\rho(x)}=\rho_{\max}$:
+$$
+\dot{V}\leq-\frac{\gamma\beta_0}{2\varepsilon}s^2+\frac{\varepsilon}{2\gamma\beta_0}\rho_{\max}^2
+$$
+
+
+Следовательно, $s$ остается ограниченным и асимптотически
+попадает в окрестность:
+$$
+|s|\leq\varepsilon^*_s:=\frac{\varepsilon\rho_{\max}}{\gamma\beta_0},
+$$
+что говорит о практической устойчивости.
+
+
+При выполнении $\gamma\beta_0>\rho_{\max}:\varepsilon^*_s<\varepsilon$,
+т.е. после достижения слоя $|s|\leq\varepsilon$ ошибка дополнительно
+сжимается до $|s|\leq\varepsilon^*_s<\varepsilon$.
+
+
+Моделирование системы (см. рис. \ref{fig:3xsu}) при
+\begin{align*}
+    &g=9.81,\\
+    &\hat{m}=0.5, m=0.8,\\
+    &\hat{l}=0.8, l=1,\\
+    &\hat{k}=0.2, k=0.15,\\
+    &a=2,\\
+    &\beta_0=15,\\
+    &\varepsilon=0.05,\\
+    &x_0=\begin{bmatrix}
+        1\\0
+    \end{bmatrix}
+\end{align*}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{3xsu.png}
+    \caption{Графики $\theta,\dot{\theta},s(t),u(t)$}
+    \label{fig:3xsu}
+\end{figure}
 
 
 \section{Вывод}
-...
-
+В ходе выполнения лабораторной работы
+для различных нелинейных систем
+были синтезированы разрывный и/или
+непрерывный стабилизирующие регуляторы
+на основе скользящих режимов.
+В каждом случае был проведен анализ устойчивости,
+в ходе которого были получены асимптотическая
+и практическая устойчивости систем в зависимости от условия
+на скольжение. Также было проведено математическое
+моделирование каждой из систем. Результаты показали
+корректность выполненных расчетов.
 \end{document}
