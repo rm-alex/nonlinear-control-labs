@@ -149,13 +149,19 @@ x_2=-ax_1,\ x_2=\dot{x}_1-\sin{x_1}\Rightarrow \dot{x}_1=-ax_1+\sin{x_1}
 $$
 
 
-При малых $x_1$ получаем $\sin{x_1}\sim x_1$:
+При $V=0.5x_1^2$:
 $$
-\dot{x}_1\approx -\left( a-1 \right)x_1
+\dot{V}=x\dot{x}=-ax_1^2+x_1\sin{x_1}
 $$
 
 
-Для асимптотической устойчивости $a>1\Rightarrow \lim\limits_{t\to\infty}x_1(t)=0$.
+Так как $|\sin{x_1}|\leq|x_1|\,\forall x_1$:
+$$
+\dot{V}\leq-ax_1^2+|x_1||\sin{x_1}|\leq-ax_1^2+x_1^2=-(a-1)x_1^2=-2\left( a-1 \right)V
+$$
+
+
+Для асимптотической устойчивости $a>1\Rightarrow \dot{V}<0,\lim\limits_{t\to\infty}x_1(t)=0$.
 
 
 Динамика скользящей переменной:
