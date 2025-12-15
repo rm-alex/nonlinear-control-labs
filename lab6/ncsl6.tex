@@ -1,0 +1,128 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage{tempora}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bfseries\centering\MakeUppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]{\bfseries}{\thesubsubsection.}{1em}{}
+
+\renewcommand{\contentsname}{\hfill \textbf{СОДЕРЖАНИЕ} \hfill\null}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{cmap}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.7}
+
+\lstdefinestyle{code}{
+    language=Python, % change if needed
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\small\color{LightGray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    rulecolor=\color{LightGray},
+    linewidth=\linewidth,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{violet},
+    escapeinside={\%*}{*)},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt
+}
+\lstset{style=code}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={ncs3},
+    pdfauthor={Rumyantsev Alexey},
+    pdfsubject={control},
+    pdfkeywords={LaTeX, PDF},
+    pdfpagemode=FullScreen,
+}
+
+\graphicspath{{src/images/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+        \vspace*{2.5mm}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО»\\
+        \vspace*{2.5mm}
+        \textbf{ФАКУЛЬТЕТ СИСТЕМ УПРАВЛЕНИЯ И РОБОТОТЕХНИКИ}
+        \vfill
+
+        {\large ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №6}\\
+        {\large по дисциплине}\\
+        {\large\bfseries <<НЕЛИНЕЙНЫЕ СИСТЕМЫ УПРАВЛЕНИЯ>>}\\
+        {\large на тему}\\
+        {\large\bfseries <<СИНТЕЗ ФИНИТНОГО ОДНОРОДНОГО РЕГУЛЯТОРА>>}\\
+        \vfill
+
+        \begin{flushright}
+            Выполнили: студенты\\
+            Румянцев А. А., R3441\\
+            Дьячихин Д. Н., R3480\medskip\\
+
+            Проверил: преподаватель\\
+            Зименко К. А.
+        \end{flushright}
+
+        \vfill
+
+        Санкт-Петербург\\
+        2025
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+\section{Задание}
+\subsection{Условие}
+\begin{enumerate}
+    \item Выберите нелинейную управляемую систему с одним входом, одним выходом;
+    \item Предполагая, что математическая модель содержит существенные неопределенности, представьте систему в виде цепи интеграторов с согласованной обобщенной неизвестной динамикой, используя безмодельный подход;
+    \item Реализуйте финитный однородный регулятор с дополнительной компенсацией обобщенной неизвестной динамики.
+\end{enumerate}
+
+\subsection{Выполнение}
+...
+\end{document}
