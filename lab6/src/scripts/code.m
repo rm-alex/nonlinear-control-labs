@@ -18,7 +18,7 @@ eps_s = 0.02;     % сглаживание tanh
 
 %% 3. Время
 dt = 1e-3;
-T_end = 10;
+T_end = 5;
 t = 0:dt:T_end;
 
 %% 4. Начальные условия
@@ -91,8 +91,7 @@ for k_step = 2:length(t)
     u_hist(k_step) = u_phys(k_step);
 
     % Реальная динамика маятника
-    F_true_hist(k_step) = ...
-    -(g/l)*sin(x1) - (b/I)*x2 - (c/I)*sign(x2);
+    F_true_hist(k_step) = -(g/l)*sin(x1) - (b/I)*x2 - (c/I)*sign(x2);
     ddy = F_true_hist(k_step) + u_phys(k_step)/I;
 
     x(:,k_step) = x(:,k_step-1) + dt*[x2; ddy];
@@ -123,9 +122,9 @@ xlabel('t (s)');
 title('Управление');
 
 figure;
-plot(t, F_true_hist, 'r-', 'LineWidth', 1.2);
+plot(t, F_true_hist, 'LineWidth', 1.2);
 hold on;
-plot(t, F_hat, 'b--', 'LineWidth', 1.2);
+plot(t, F_hat, '--', 'LineWidth', 1.2);
 grid on;
 xlabel('t (s)');
 ylabel('F(t)');
@@ -133,14 +132,14 @@ legend('F_{true}', 'F_{hat}', 'Location', 'best');
 title('Обобщённая неизвестная динамика и её оценка');
 
 figure;
-plot(t, F_true_hist-F_hat, 'r-', 'LineWidth', 1.2);
+plot(t, F_true_hist-F_hat, 'LineWidth', 1.2);
 grid on;
 xlabel('t (s)');
 ylabel('e(t)');
 title('Ошибка оценки неизвестной динамики');
 
 figure;
-plot(t, s_hist, 'r', 'LineWidth', 1.2);
+plot(t, s_hist, 'LineWidth', 1.2);
 grid on;
 xlabel('t (s)');
 ylabel('s(t)');

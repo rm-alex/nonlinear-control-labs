@@ -210,10 +210,7 @@ s(t)=\dot{y}(t)+\gamma\operatorname{sign}(y(t))|y(t)|^{1-\rho},\ \hat{d}(t)\appr
 $$
 
 
-Так как $\ddot{y}=d+u/I$, то:
-$$
-d=\ddot{y}-u/I
-$$
+Так как $\ddot{y}=d+u/I$, то $d=\ddot{y}-u/I$.
 Построим оценку $\hat{d}$ на основе двухступенчатой фильтрации
 для вычисления $\hat{\dot{y}},\hat{\ddot{y}}$ из измерения $y$:
 $$
@@ -234,4 +231,41 @@ $$
 
 
 Выполним моделирование системы:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{yydu.png}
+    \caption{Графики $y(t),\dot{y}(t),u(t)$}
+    \label{fig:yydu}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{fhf.png}
+    \caption{Графики $d(t),\hat{d}(t)$}
+    \label{fig:fhf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{efhf.png}
+    \caption{График $e=d(t)-\hat{d}(t)$}
+    \label{fig:efhf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{s.png}
+    \caption{График $s(t)$}
+    \label{fig:s}
+\end{figure}
+
+
+Система достигла установившегося состояния за $t=1.5$ секунды.
+
+
+\section{Вывод}
+В ходе выполнения лабораторной работы
+была выбрана нелинейная управляемая система с одним входом
+и одним выходом и представлена в виде цепи интеграторов с
+согласованной обобщенной неизвестной динамикой. Далее
+был синтезирован финитный однородный регулятор
+с дополнительной компенсацией обобщенной неизвестной динамики.
+Результаты моделирования подтверждают корректность расчетов.
 \end{document}
