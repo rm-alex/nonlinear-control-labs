@@ -11,6 +11,7 @@ I = m*l^2;
 u_max = 1.0;
 
 %% 2
+alpha = 0.6;
 lambda = 2.0;
 k = 3.0;
 rho = 0.5;
@@ -72,11 +73,12 @@ for k_step = 2:length(t)
         F_hat(k_step) = (1-betaF)*F_hat(k_step-1) + betaF*F_raw;
     end
 
-    beta_s = (1 - rho) / 1;
-    s = x2 + lambda * sign(x1) * abs(x1)^beta_s;
+    s = x2 + lambda * abs(x1)^alpha * sign(x1);
     s_hist(k_step) = s;
 
-    u = -F_hat(k_step) - k*abs(s)^rho*tanh(s/eps_s);
+    sign_s = s / (abs(s) + eps_s);
+    u = -F_hat(k_step) ...
+        - k * abs(s)^rho * sign_s;
 
     u_phys(k_step) = sat(u);
     u_hist(k_step) = u_phys(k_step);
